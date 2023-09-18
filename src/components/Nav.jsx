@@ -3,12 +3,32 @@ import logo from "../assets/logo.png";
 import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
-const Nav = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false); // Initialize state for the navbar
+const Nav = ({ onSearch, handleSearch }) => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); // Track the search query
 
   const toggleNav = () => {
-    setIsNavOpen(!isNavOpen); // Toggle the navbar state
+    setIsNavOpen(!isNavOpen);
   };
+
+  // Handle search input change
+  // const handleSearchChange = (e) => {
+  //   setSearchQuery(e.target.value);
+  // };
+
+const handleSearchChange = (e) => {
+    const inputValue = e.target.value;
+    setSearchQuery(inputValue);
+    handleSearch(inputValue); // Call the handleSearch function with the updated query
+  };
+
+  // Handle search form submission
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    // Call the onSearch callback from the Store component
+    onSearch(searchQuery);
+  };
+
   return (
     <div>
       <div className="">
@@ -19,19 +39,23 @@ const Nav = () => {
               Ruby Pastries
             </p>
           </div>
-          <form className="flex lg:hidden">
+          <form onSubmit={handleSearchSubmit} className="flex lg:hidden">
             <input
               type="text"
               className="border rounded-lg rounded-r-none border-red-600 py-0.5 px-1.5 -ml-5 focus:outline-none"
               placeholder="Search..."
+              value={searchQuery} // Bind input value to searchQuery state
+              onChange={handleSearchChange} // Handle input change
             />
             <button
               type="submit"
+              disabled={!searchQuery}
               className="shadow-md border border-red-600 bg-primary text-white rounded-lg rounded-l-none px-2 py-1"
             >
               <AiOutlineSearch />
             </button>
           </form>
+          {/* ... (rest of your navigation code) */}
           <div className="lg:flex hidden space-x-3 uppercase font-semibold justify-evenly">
             <NavLink to={"/"} className={"hover:text-primary hover:font-bold"}>
               Home
@@ -49,33 +73,22 @@ const Nav = () => {
               Contact Us
             </NavLink>
           </div>
-          <form className="hidden lg:flex">
+          <form onSubmit={handleSearchSubmit} className="lg:flex hidden">
             <input
               type="text"
+              className="border rounded-lg rounded-r-none border-red-600 py-0.5 px-1.5 -ml-5 focus:outline-none"
               placeholder="Search..."
-              className="border rounded-lg rounded-r-none px-3 py-0.5 border-red-600 focus:outline-none"
+              value={searchQuery} // Bind input value to searchQuery state
+              onChange={handleSearchChange} // Handle input change
             />
             <button
               type="submit"
+              disabled={!searchQuery}
               className="shadow-md border border-red-600 bg-primary text-white rounded-lg rounded-l-none px-2 py-1"
-              placeholder="Search..."
             >
               <AiOutlineSearch />
             </button>
           </form>
-          <div className="lg:hidden flex">
-            <button
-              className={`text-primary z-30 font-bold text-xl uppercase ${
-                isNavOpen ? "z-50" : ""
-              }`} // Increase z-index when the menu is open
-              onClick={toggleNav}
-            >
-              {/* Hamburger Icon */}
-              <div className="w-6 h-1 bg-primary mb-1"></div>
-              <div className="w-6 h-1 bg-primary mb-1"></div>
-              <div className="w-6 h-1 bg-primary"></div>
-            </button>
-          </div>
         </div>
       </div>
       <div
