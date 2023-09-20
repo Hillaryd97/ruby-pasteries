@@ -10,24 +10,26 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Store from "./pages/Store";
 import { useEffect, useState } from "react";
+import ProductDetails from "./pages/product/ProductDetails";
 // import Home from "./pages/Home";
-
+import { StateContext } from "../context/StateContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Landing />} />
       <Route path="/account" element={<Account />} />
-      <Route path="/login" element={<Login />}/>
+      <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/store" element={<Store />} />
+      <Route path="/product/:slug" element={<ProductDetails />} />
       {/* <Route path="/accounthome" element={<AccountHome />} /> */}
       {/* <Route path="/home" element={<Home />} /> */}
     </Route>
   )
 );
 
-function App( ) {
+function App() {
   // const [token, setToken] = useState(false)
   // if(token){
   //     sessionStorage.setItem('token', JSON.stringify(token))
@@ -39,7 +41,11 @@ function App( ) {
   //     setToken(data)
   //   }
   // }, [])
-  
-  return <RouterProvider router={router} />;
+
+  return (
+    <StateContext>
+      <RouterProvider router={router} />
+    </StateContext>
+  );
 }
 export default App;

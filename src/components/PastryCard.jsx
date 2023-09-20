@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const PastryCard = ({ image, price, category, pastry_name, link }) => {
   return (
     <div>
-      <Link href={link}>
+      {/* <Link href={link}> */}
       <div className="md:w-48 w-44 p-3 py-3 bg-white shadow-sm border rounded-sm flex flex-col mb-10  ease-in-out duration-300 hover:scale-105 transform hover:shadow-lg transition-transform ">
       <img
         src={`${image}`}
@@ -28,7 +28,7 @@ const PastryCard = ({ image, price, category, pastry_name, link }) => {
         </div> */}
       </div>
     </div>
-      </Link>
+      {/* </Link> */}
     </div>
   );
 };

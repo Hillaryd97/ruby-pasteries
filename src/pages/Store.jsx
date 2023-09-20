@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion"; // Import motion and AnimatePresence
 import Nav from "../components/Nav";
 import PastryCard from "../components/PastryCard";
 import { client } from "../../lib/client";
 import { BiSolidCartAlt } from "react-icons/bi";
 import Cart from "../components/Cart";
+import { Link } from "react-router-dom";
 import { urlFor } from "../../lib/client";
+import img1 from "../assets/img (3).jpeg";
 
 const Store = () => {
   const [banner, setBanner] = useState(null);
@@ -50,26 +53,6 @@ const Store = () => {
     fetchProducts(); // Call the function to fetch products
   }, []);
 
-  // const handleSearch = (query) => {
-  //   if (query.trim() === "") {
-  //     // If the search query is empty, reset the filtered products
-  //     setFilteredProducts([]);
-  //   } else {
-  //     // Perform search based on query
-  //     const results = products.filter((product) => {
-  //       const productName = product.name.toLowerCase();
-  //       const categoryName = product.category.name.toLowerCase();
-  //       const search = query.toLowerCase();
-
-  //       return productName.includes(search) || categoryName.includes(search);
-  //     });
-
-  //     // Update the filtered products
-  //     setFilteredProducts(results);
-  //   }
-  // };
-  
-  
   const handleSearch = (query) => {
     if (query.trim() === "") {
       // If the search query is empty, reset the search results
@@ -80,20 +63,19 @@ const Store = () => {
         const productName = product.name.toLowerCase();
         const categoryName = product.category.name.toLowerCase();
         const search = query.toLowerCase();
-  
+
         return productName.includes(search) || categoryName.includes(search);
       });
-  
+
       // Update the search results
       setSearchResults(results);
     }
   };
-  
 
   // Function to display loading animation while products are loading
   const renderLoading = () => {
     return (
-      <div className="flex justify-center items-center h-96">
+      <div className="flex justify-center items-center h-20">
         <div className="animate-spin rounded-full border-t-4 border-b-4 border-primary h-16 w-16"></div>
       </div>
     );
@@ -138,31 +120,40 @@ const Store = () => {
     displayRandomProducts(); // Call the function to display random products
   }, [products]);
 
+  // Animation variants
+  const fadeInVariant = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
   return (
     <div className="bg-background min-h-screen">
       <div className="container mx-auto">
         <Nav handleSearch={handleSearch} />
-        <div
-          className="fixed bottom-5 left-5 bg-white border-2 text-primary border-secondary p-3 rounded-full shadow-lg cursor-pointer"
-          onClick={toggleCart}
-        >
-          <BiSolidCartAlt />
-        </div>
-        {isCartOpen && <Cart />}
         {isLoading ? (
           renderLoading() // Show loading animation while products are loading
         ) : (
-          <div
+          <motion.div
             className="bg-cover bg-center h-48"
-            style={{ backgroundImage: `url(${urlFor(banner?.image)})` }}
+            style={{
+              backgroundImage: `url(${
+                banner?.image ? urlFor(banner?.image) : img1
+              })`,
+            }}
+            initial="hidden"
+            animate="visible"
+            variants={fadeInVariant}
           >
-            <div
-              className="bg-opacity-60 bg-black h-full flex flex-col justify-center items-center text-center text-white p-8"
-            >
-              <h1 className="text-2xl font-bold mb-4">{banner?.title}</h1>
-              <p className="">{banner?.information}</p>
+            <div className="bg-opacity-60 bg-black h-full flex flex-col justify-center items-center text-center text-white p-8">
+              <h1 className="text-2xl font-bold mb-4">
+                {banner?.title || "Title"}
+              </h1>
+              <p className="">
+                {banner?.information ||
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit repellendus quo eveniet facilis autem nam error. Autem ipsum dolorum reiciendis soluta nihil, illum cum tempora architecto eveniet, quia consequatur voluptatem."}
+              </p>
             </div>
-          </div>
+          </motion.div>
         )}
         <div className="flex flex-col justify-center items-center">
           <h3 className="font-playfair-display lg:text-3xl text-2xl font-bold text-primary py-2">
@@ -170,36 +161,56 @@ const Store = () => {
           </h3>
         </div>
         {searchResults.length > 0 && (
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mt-10 lg:mx-20">
-        {searchResults.map((product) => (
-          <PastryCard
-            pastry_name={product.name}
-            category={product.category.name}
-            image={urlFor(product.image && product.image[0])}
-            product={product}
-            price={product.price}
-            link={`/product/${product.slug.current}`}
-            key={product.slug.current}
-          />
-        ))}
-      </div>
-    )}
-    {/* Grid for displayedProducts */}
-    { (
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mt-10 lg:mx-20">
-        {displayedProducts.map((product) => (
-          <PastryCard
-            pastry_name={product.name}
-            category={product.category.name}
-            image={urlFor(product.image && product.image[0])}
-            product={product}
-            price={product.price}
-            link={`/product/${product.slug.current}`}
-            key={product.slug.current}
-          />
-        ))}
-      </div>
-    )}
+          <motion.div
+            className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mt-10 lg:mx-20"
+            initial="hidden"
+            animate="visible"
+            variants={fadeInVariant}
+          >
+            {searchResults.map((product) => (
+              <Link to={`/product/${product.slug.current}`}>
+                <a
+                  href={`/product/${product.slug.current}`}
+                  // Optionally add any other attributes or styles you need
+                >
+                  <PastryCard
+                    pastry_name={product.name}
+                    category={product.category.name}
+                    image={urlFor(product.image && product.image[0])}
+                    price={product.price}
+                    key={product._id}
+                  />
+                </a>
+              </Link>
+            ))}
+          </motion.div>
+        )}
+        {/* Grid for displayedProducts */}
+        {
+          <motion.div
+            className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mt-10 lg:mx-20"
+            initial="hidden"
+            animate="visible"
+            variants={fadeInVariant}
+          >
+            {displayedProducts.map((product) => (
+              <Link to={`/product/${product.slug.current}`}>
+              <a
+                href={`/product/${product.slug.current}`}
+                // Optionally add any other attributes or styles you need
+              >
+                <PastryCard
+                  pastry_name={product.name}
+                  category={product.category.name}
+                  image={urlFor(product.image && product.image[0])}
+                  price={product.price}
+                  key={product._id}
+                />
+              </a>
+            </Link>
+            ))}
+          </motion.div>
+        }
       </div>
       <div className="bg-background">
         <div className="container mx-auto flex flex-col md:flex-row justify-center md:justify-between py-2 text-text">

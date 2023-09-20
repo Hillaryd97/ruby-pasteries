@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Nav from "../components/Nav";
+import Nav from "../components/NavAll";
 import { Link } from "react-router-dom";
 import AccountHome from "./AccountHome";
 import Login from "./Login";

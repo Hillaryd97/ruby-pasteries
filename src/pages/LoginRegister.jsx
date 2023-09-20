@@ -1,18 +1,40 @@
 import React from "react";
+import { motion } from "framer-motion"; // Import motion
 import Login from "./Login";
 import Register from "./Register";
 
-const LoginRegister = ({setToken}) => {
+const LoginRegister = ({ setToken }) => {
+  // Animation variants for Login and Register components
+  const slideInFromLeft = {
+    hidden: { x: -1000 },
+    visible: { x: 0, transition: { duration: 0.7 } },
+  };
+
+  const slideInFromRight = {
+    hidden: { x: 1000 },
+    visible: { x: 0, transition: { duration: 0.7 } },
+  };
+
   return (
     <div className="flex flex-col justify-center lg:flex-row mt-10">
-      <div className="w-full lg:w-fit p-4 lg:p-8 bg-white rounded-lg shadow-lg">
+      <motion.div
+        className="w-full lg:w-fit p-4 lg:p-8 bg-white rounded-lg shadow-lg"
+        initial="hidden" // Set initial animation state
+        animate="visible" // Set animate animation state
+        variants={slideInFromLeft} // Use the slideInFromLeft animation
+      >
         {/* Content for the left page of the "book" */}
         <Register />
-      </div>
-      <div className="w-full lg:w-fit p-4 lg:p-8 bg-white rounded-lg shadow-lg mt-4 lg:mt-0 lg:ml-4">
+      </motion.div>
+      <motion.div
+        className="w-full lg:w-fit p-4 lg:p-8 bg-white rounded-lg shadow-lg mt-4 lg:mt-0 lg:ml-4"
+        initial="hidden" // Set initial animation state
+        animate="visible" // Set animate animation state
+        variants={slideInFromRight} // Use the slideInFromRight animation
+      >
         {/* Content for the right page of the "book" */}
-        <Login  setToken={setToken} />
-      </div>
+        <Login setToken={setToken} />
+      </motion.div>
     </div>
   );
 };

@@ -1,25 +1,22 @@
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useState } from "react";
-import { AiOutlineSearch, AiOutlineShopping } from "react-icons/ai";
 import Cart from "./Cart";
+import { AiOutlineSearch, AiOutlineShopping } from "react-icons/ai";
+import { useStateContext } from "../../context/StateContext";
 
-
-const Nav = ({ onSearch, handleSearch }) => {
+const NavAll = ({ onSearch, handleSearch }) => {
+  const { showCart, setShowCart, totalQuantity, isCartOpen, toggleCart } = useStateContext();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // Track the search query
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
-  };
+  // const [isCartOpen, setIsCartOpen] = useState(false);
+  // const toggleCart = () => {
+  //   setIsCartOpen(!isCartOpen);
+  // };
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };
 
-  // Handle search input change
-  // const handleSearchChange = (e) => {
-  //   setSearchQuery(e.target.value);
-  // };
 
   const handleSearchChange = (e) => {
     const inputValue = e.target.value;
@@ -44,7 +41,7 @@ const Nav = ({ onSearch, handleSearch }) => {
               Ruby Pastries
             </p>
           </div>
-          <form onSubmit={handleSearchSubmit} className="flex lg:hidden">
+          {/* <form onSubmit={handleSearchSubmit} className="flex lg:hidden">
             <input
               type="text"
               className="border rounded-lg rounded-r-none border-red-600 py-0.5 px-1.5 -ml-5 focus:outline-none"
@@ -59,7 +56,7 @@ const Nav = ({ onSearch, handleSearch }) => {
             >
               <AiOutlineSearch />
             </button>
-          </form>
+          </form> */}
           {/* ... (rest of your navigation code) */}
           <div className="lg:flex hidden space-x-3 uppercase font-semibold justify-evenly">
             <NavLink
@@ -90,7 +87,7 @@ const Nav = ({ onSearch, handleSearch }) => {
               Contact Us
             </NavLink>
           </div>
-
+{/* 
           <form onSubmit={handleSearchSubmit} className="lg:flex hidden">
             <input
               type="text"
@@ -106,7 +103,7 @@ const Nav = ({ onSearch, handleSearch }) => {
             >
               <AiOutlineSearch />
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
       <div
@@ -163,19 +160,17 @@ const Nav = ({ onSearch, handleSearch }) => {
         </ul>
       </div>
       <div
-          className="fixed bottom-5 left-5  bg-white border-2 text-primary border-secondary p-4 rounded-full shadow-lg cursor-pointer"
+          className="z-50 fixed bottom-5 left-5  bg-white border-2 text-primary border-secondary p-4 rounded-full shadow-lg cursor-pointer"
           onClick={toggleCart}
         >
           <AiOutlineShopping />
-          {/* {itemCount > 0 && ( */}
-          <span className="z-50 absolute -top-1 -right-1 bg-primary text-white rounded-full px-2 py-1 text-xs">
-            {/* {itemCount} */}0
+          <span className="absolute -top-1 -right-1 bg-primary text-white rounded-full px-2 py-1 text-xs">
+            {totalQuantity}
           </span>
-          {/* )} */}
         </div>
         {isCartOpen && <Cart />}
     </div>
   );
 };
 
-export default Nav;
+export default NavAll;

@@ -52,7 +52,9 @@ const Address = ({ token }) => {
       </div>
       {isLoading ? (
         // Loading state message
-        <p className="text-lg">Loading...</p>
+        <div className="flex justify-center items-center h-96">
+        <div className="animate-spin rounded-full border-t-4 border-b-4 border-primary h-16 w-16"></div>
+      </div>
       ) : (
         <>
           {accountData ? ( // Check if accountData is available
