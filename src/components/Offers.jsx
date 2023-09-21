@@ -12,14 +12,7 @@ const Offers = () => {
   useEffect(() => {
     client
       .fetch(
-        `*[_type == "product"]{
-          image,
-          name, 
-          category->,
-          price, 
-          slug,
-          details
-        }`
+        `*[_type == "product"]`
       )
       .then((data) => setProducts(data))
       .catch(console.error);

@@ -28,16 +28,7 @@ const Store = () => {
     const fetchProducts = async () => {
       try {
         const productData = await client.fetch(
-          `*[_type == "product"]{
-            image,
-            name, 
-            category->{
-              name
-            },
-            price, 
-            slug,
-            details
-          }`
+          `*[_type == "product"]`
         );
 
         if (productData && productData.length > 0) {

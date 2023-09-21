@@ -16,34 +16,22 @@ import { useStateContext } from "../../../context/StateContext";
 function ProductDetails() {
   // Get the slug parameter from the URL
   const { slug } = useParams();
-  const [product, setProduct] = useState({
-    details: "Product Details",
-    name: "Product",
-    price: 0,
-    category: "Category",
-  });
+  const [product, setProduct] = useState([]);
   const [displayedProducts, setDisplayedProducts] = useState([]);
   const [displayedLikableProducts, setDisplayedLikableProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [similarProducts, setSimilarProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { decQty, incQty, qty, onAdd } = useStateContext();
+  const { decQty, incQty, qty, onAdd, addToCart } = useStateContext();
+
   useEffect(() => {
     // Function to fetch products
     const fetchProducts = async () => {
       try {
         const productData = await client.fetch(
-          `*[_type == "product" && slug.current == '${slug}']{
-            image,
-            name, 
-            category->{
-              name
-            },
-            price, 
-            slug,
-            details
-          }`
+          `*[_type == "product" && slug.current == '${slug}']`
         );
+        // console.log(productData)
 
         if (productData && productData.length > 0) {
           setProducts(productData);
@@ -63,17 +51,9 @@ function ProductDetails() {
     const fetchSimilarProducts = async () => {
       try {
         const similarProductData = await client.fetch(
-          `*[_type == "product"]{
-            image,
-            name, 
-            category->{
-              name
-            },
-            price, 
-            slug,
-          }`
+          `*[_type == "product"]`
         );
-
+// console.log(similarProductData)
         if (similarProductData && similarProductData.length > 0) {
           setSimilarProducts(similarProductData);
           setIsLoading(false);
@@ -123,10 +103,13 @@ function ProductDetails() {
       // Display the first 100 shuffled products (adjust as needed)
       const initialDisplay = shuffledProducts.slice(0, 8);
       setDisplayedLikableProducts(initialDisplay);
+      // console.log(initialDisplay)
     };
 
     displayRandomLikableProducts(); // Call the function to display random products
   }, [similarProducts]);
+
+
 
   return (
     <div className="bg-background min-h-screen">
@@ -199,8 +182,8 @@ function ProductDetails() {
         <div className="">
           <div className="grid md:grid-cols-4 grid-cols-3 justify-evenly mx-10 py-10">
             {displayedLikableProducts.map((product) => (
-              <a href={`/product/${product.slug.current}`}>
-                {/* <Link to={`/product/${product.slug.current}`}> */}
+              // <a href={`/product/${product.slug.current}`} key={product._id}>
+                <Link to={`/product/${product.slug.current}`} key={product._id}>
                 {/* <a
                   href={`/product/${product.slug.current}`}
                   // Optionally add any other attributes or styles you need
@@ -210,11 +193,11 @@ function ProductDetails() {
                   category={product.category.name}
                   image={urlFor(product.image && product.image[0])}
                   price={product.price}
-                  key={product.slug.current}
+                  
                 />
                 {/* </a> */}
-              {/* </Link> */}
-              </a>
+              </Link>
+              // {/* </a> */}
             ))}
           </div>
         </div>

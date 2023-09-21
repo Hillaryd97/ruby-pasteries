@@ -10,6 +10,7 @@ import AllCategories from "../components/AllCategories";
 import Footer from "../components/Footer";
 import Cart from "../components/Cart";
 import { useState } from "react";
+import { ScrollRestoration } from "react-router-dom";
 
 const Landing = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -20,6 +21,7 @@ const Landing = () => {
     <div className="bg-background text-text font-roboto min-h-screen ">
       <div className="container mx-auto space-y-10 px-4">
         <Hero />
+        <ScrollRestoration />
         <Offers />
         <ProductLanding />
       </div>
