@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import ProductDetails from "./pages/product/ProductDetails";
 // import Home from "./pages/Home";
 import { StateContext } from "../context/StateContext";
+import CheckoutPage from "./pages/CheckoutPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/store" element={<Store />} />
+      <Route path="/checkout" element={<CheckoutPage />} />
       <Route path="/product/:slug" element={<ProductDetails />} />
       {/* <Route path="/accounthome" element={<AccountHome />} /> */}
       {/* <Route path="/home" element={<Home />} /> */}

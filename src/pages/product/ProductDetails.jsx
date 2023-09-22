@@ -29,17 +29,22 @@ function ProductDetails() {
     const fetchProducts = async () => {
       try {
         const productData = await client.fetch(
-          `*[_type == "product" && slug.current == '${slug}']`
+          `*[_type == "product" && slug.current == '${slug}']{
+            ...,
+          'category': category->,
+          }`
         );
         // console.log(productData)
 
         if (productData && productData.length > 0) {
           setProducts(productData);
           setIsLoading(false);
+          console.log("hellop", productData);
         }
       } catch (error) {
         console.error("Error fetching products:", error);
         setIsLoading(false);
+        
       }
     };
 
@@ -51,7 +56,10 @@ function ProductDetails() {
     const fetchSimilarProducts = async () => {
       try {
         const similarProductData = await client.fetch(
-          `*[_type == "product"]`
+          `*[_type == "product"]{
+            ...,
+            'category': category->,
+          }`
         );
 // console.log(similarProductData)
         if (similarProductData && similarProductData.length > 0) {

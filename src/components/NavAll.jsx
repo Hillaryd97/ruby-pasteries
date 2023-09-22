@@ -1,8 +1,8 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useState } from "react";
 import Cart from "./Cart";
-import { AiOutlineSearch, AiOutlineShopping } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineSearch, AiOutlineShopping } from "react-icons/ai";
 import { useStateContext } from "../../context/StateContext";
 
 const NavAll = ({ onSearch, handleSearch }) => {
@@ -104,6 +104,8 @@ const NavAll = ({ onSearch, handleSearch }) => {
               <AiOutlineSearch />
             </button>
           </form> */}
+        <button onClick={toggleNav} className="lg:hidden text-3xl relative z-50 hover:text-primary focus:text-primary text-black"><AiOutlineMenu /></button>
+
         </div>
       </div>
       <div
@@ -111,6 +113,8 @@ const NavAll = ({ onSearch, handleSearch }) => {
           isNavOpen ? "translate-x-0" : "translate-x-full"
         } z-20 transition-transform ease-in-out duration-300`}
       >
+        {/* <button onClick={toggleNav} className="lg:hidden text-3xl absolute top-3 right-3 z-50 hover:text-primary focus:text-primary text-black"><AiOutlineMenu /></button> */}
+
         <ul className="pt-16 pb-4 pl-4 text-black text-lg">
           <li>
             <NavLink
@@ -122,13 +126,13 @@ const NavAll = ({ onSearch, handleSearch }) => {
             </NavLink>
           </li>
           <li>
-            <NavLink
+            <Link
               to="/store"
               onClick={toggleNav}
               className="block py-2 px-4 hover:bg-primary hover:text-white transition duration-300"
             >
               Store
-            </NavLink>
+            </Link>
           </li>
           <li>
             <NavLink

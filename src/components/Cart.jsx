@@ -28,13 +28,13 @@ const Cart = () => {
     useStateContext();
 
   const cartRef = useRef();
-  const { totalPrice, totalQuantity, cartItems, isCartOpen, toggleCartItemQuantity, toggleCart, removeProduct } =
+  const { totalPrice, totalQuantity, cartItems, isCartOpen, toggleCartItemQuantity, toggleCart, removeProduct, clearCart } =
     useStateContext();
   return (
     <AnimatePresence>
       {isCartOpen && (
         <motion.div
-          className="fixed top-0 left-0 h-screen w-2/6 bg-white py-4 rounded-lg shadow-lg z-50"
+          className="fixed bottom-3 left-3 h-fit w-2/6 bg-white pt-4 rounded-lg shadow-lg z-50"
           initial="closed"
           animate={isCartOpen ? "open" : "closed"}
           exit="closed"
@@ -68,8 +68,9 @@ const Cart = () => {
                 </Link>
               </div>
             )}
-            <div className="pt-3 px-4 w-full flex flex-col space-y-3 hover:overflow-y-scroll">
-              {cartItems.length >= 1 &&
+          <div className="pt-3 px-4 w-full flex flex-col space-y-3">
+              <div className="overflow-y-auto max-h-60 sm:max-h-80 md:max-h-96 lg:max-h-80 xl:max-h-60">
+             {cartItems.length >= 1 &&
                 cartItems.map((item) => (
                   <div
                     key={item?._id || 1}
@@ -118,26 +119,25 @@ const Cart = () => {
                     </div>
                   </div>
                 ))}
+             </div>
             </div>
           </div>
           {cartItems.length >= 1 && (
-            <div className="absolute z-10 bg-gray-50 shadow-md rounded-b-xl px-3 bottom-0 py-2 border-t-2 left-0 w-full">
-              <div className="  flex ">
-                <div className="font-bold flex flex-row items-center w-full justify-between ">
-                  <h3>Subtotal:</h3>
-                  <h3>₦{totalPrice.toFixed(2)}</h3>
-                </div>
-              </div>
-              <div className="flex justify-center items-center pt-6">
-                <button
-                  type="button"
-                  className="hover:bg-opacity-80 duration-300 rounded-lg bg-primary text-white  py-1 w-5/6"
-                  onClick={""}
-                >
-                  PLACE ORDER
-                </button>
-              </div>
+            <div className="bg-gray-50 shadow-md rounded-b-xl px-3 py-2 border-t-2 w-full">
+            <div className="font-bold flex flex-row items-center justify-between ">
+              <h3>Subtotal:</h3>
+              <h3>₦{totalPrice.toFixed(2)}</h3>
             </div>
+            <div className="flex justify-center items-center pt-6">
+              <Link
+                to={"/checkout"}
+                className="hover:bg-opacity-80 duration-300 text-center  rounded-lg bg-primary text-white  py-1 w-full sm:w-5/6"
+                onClick={clearCart}
+              >
+                CHECKOUT
+              </Link>
+            </div>
+          </div>
           )}
         </motion.div>
       )}

@@ -12,7 +12,10 @@ const Offers = () => {
   useEffect(() => {
     client
       .fetch(
-        `*[_type == "product"]`
+        ` *[_type == "product"]{
+          ...,
+          'category': category->,
+        }`
       )
       .then((data) => setProducts(data))
       .catch(console.error);
@@ -57,19 +60,18 @@ const Offers = () => {
       </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mt-10 lg:mx-20">
         {displayedProducts.map((product) => (
-          <Link to={`/product/${product.slug.current}`}>
-          <a
+          <Link to={`/product/${product.slug.current}`} key={product._id}>
+          {/* <a
             href={`/product/${product.slug.current}`}
             // Optionally add any other attributes or styles you need
-          >
+          > */}
             <PastryCard
               pastry_name={product.name}
               category={product.category.name}
               image={urlFor(product.image && product.image[0])}
               price={product.price}
-              key={product._id}
             />
-          </a>
+          {/* </a> */}
         </Link>
         ))}
       </div>

@@ -4,6 +4,10 @@ import Dashboard from "../components/Dashboard";
 import Address from "../components/Address";
 import AccountDetails from "../components/AccountDetails";
 import { useNavigate } from "react-router-dom";
+import Store from "./Store";
+import ProductDetails from "./product/ProductDetails";
+import Cart from "../components/Cart";
+import CheckoutPage from "./CheckoutPage";
 
 const AccountHome = ({ token }) => {
     let navigate = useNavigate()
@@ -70,6 +74,11 @@ const AccountHome = ({ token }) => {
         {activeComponent === "orders" && <Orders token={token} />}
         {activeComponent === "address" && <Address token={token} />}
         {activeComponent === "account-details" && <AccountDetails  token={token} />}
+      </div>
+      <div className="hidden">
+      <Store token={token}/>
+      <ProductDetails token={token}/>
+      <CheckoutPage token={token}/>
       </div>
     </div>
   );
