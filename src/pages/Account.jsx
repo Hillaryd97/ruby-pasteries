@@ -21,6 +21,20 @@ const Account = () => {
     }
   }, []);
 
+  const loginUser = () => {
+    setIsLoggedIn(true);
+  };
+
+  // Function to handle user logout
+  const logoutUser = () => {
+    setIsLoggedIn(false);
+  };
+
+  // Function to check if user is logged in
+  const checkLoggedIn = () => {
+    return isLoggedIn;
+  };
+
   return (
     <div className="bg-background min-h-screen font-roboto">
       <div className="container mx-auto">

@@ -1,63 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useStateContext } from "../../context/StateContext";
-import { supabase } from "../createClient"; // Import useAuth and supabase from your Supabase setup
+import { supabase } from "../createClient";
 
-const CheckoutPage = ({ token }) => {
+import Nav from "../components/Nav";
+
+const CheckoutPage = () => {
   // Get cart items, total price, total quantity, and placeOrder function from context
   const {
     cartItems,
     totalPrice,
     totalQuantity,
     placeOrder,
+    deliveryType,
+    setDelivery,
+    paymentType, // Add paymentType from context
+    setPayment, // Add setPayment function from context
+    postCartDetailsToSupabase,
   } = useStateContext();
 
-  // State for delivery type
-  const [deliveryType, setDeliveryType] = useState("homeDelivery");
+  const token = JSON.parse(sessionStorage.getItem("token"));
 
   // State for user details (you can replace these with your user data)
   const [formData, setFormData] = useState({
     fullname: `${token.user.user_metadata.fullname}`,
     email: `${token.user.email}`,
-    phone: "",
-    // shippingAddress: "",
-    // billingAddress: "",
-    // fullname: formData.fullname
   });
 
-  useEffect(() => {
-    // Function to fetch the user's account details
-    async function fetchAccountDetails() {
-      const email = token.user.email; // Get the user's email
-
-      // Fetch the account details
-      const { data, error } = await supabase
-        .from("accountDetails")
-        .select()
-        .eq("email", email); // Filter by email
-
-      if (error) {
-        console.error("Error fetching account details:", error);
-        return;
-      }
-
-      // Assuming you expect only one matching record, you can set it in state
-      if (data && data.length > 0) {
-        setAccountData(data[0]);
-      }
-    }
-
-    // Call the fetchAccountDetails function when the component mounts
-    fetchAccountDetails();
-  }, []);
+  // State for payment type
+  const handlePaymentTypeChange = (event) => {
+    setPayment(event.target.value); // Assuming the payment type is selected through an input field
+  };
 
   return (
     <div className="bg-background min-h-screen">
-      <div className="container mx-auto">
-        <div className="py-8">
-          <h2 className="text-2xl font-bold text-primary">Checkout</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="container mx-auto py-8 lg:w-1/2 px-4">
+        <h2 className="text-2xl font-bold text-primary mb-4">Checkout</h2>
+        <div className="grid grid-cols-1 gap-4">
           <div>
             <h3 className="text-xl font-semibold mb-4">Order Summary</h3>
             {cartItems.map((item) => (
@@ -86,21 +65,23 @@ const CheckoutPage = ({ token }) => {
                 type="text"
                 id="name"
                 className="w-full border rounded py-1 px-2"
-                value={token.user.user_metadata.fullname}
-                onChange={(e) => setUserData({ ...userData, name: e.target.value })}
+                value={formData.fullname}
+                onChange={(e) =>
+                  setFormData({ ...formData, fullname: e.target.value })
+                }
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="phoneNumber" className="text-lg">
-                Phone Number:
+              <label htmlFor="email" className="text-lg">
+                Email:
               </label>
               <input
                 type="text"
-                id="phoneNumber"
+                id="email"
                 className="w-full border rounded py-1 px-2"
-                value={userData.phoneNumber}
+                value={formData.email}
                 onChange={(e) =>
-                  setUserData({ ...userData, phoneNumber: e.target.value })
+                  setFormData({ ...formData, email: e.target.value })
                 }
               />
             </div>
@@ -112,20 +93,34 @@ const CheckoutPage = ({ token }) => {
                 id="deliveryType"
                 className="w-full border rounded py-1 px-2"
                 value={deliveryType}
-                onChange={(e) => setDeliveryType(e.target.value)}
+                onChange={(e) => setDelivery(e.target.value)}
               >
-                <option value="homeDelivery">Home Delivery</option>
-                <option value="pickup">Pickup</option>
+                <option value="Home Delivery">Home Delivery</option>
+                <option value="Pickup">Pickup</option>
+              </select>
+            </div>
+            <div className="mb-4">
+              <label htmlFor="paymentType" className="text-lg">
+                Payment Type:
+              </label>
+              <select
+                id="paymentType"
+                className="w-full border rounded py-1 px-2"
+                value={paymentType}
+                onChange={handlePaymentTypeChange}
+              >
+                <option value="Bank Transfer">Bank Transfer</option>
+                <option value="Pay On Delivery">Pay On Delivery</option>
               </select>
             </div>
             <button
               className="bg-primary text-white py-2 px-4 rounded-lg hover:bg-opacity-80 duration-300"
-              onClick={() => placeOrder()}
+              onClick={postCartDetailsToSupabase}
             >
               Place Order
             </button>
-            <Link to="/cart" className="block mt-4 text-primary">
-              Back to Cart
+            <Link to="/store" className="block mt-4 text-primary">
+              Back to Store
             </Link>
           </div>
         </div>

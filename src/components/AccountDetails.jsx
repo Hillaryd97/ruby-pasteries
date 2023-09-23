@@ -102,124 +102,89 @@ const AccountDetails = ({ token }) => {
 
   return (
     <div className="w-full mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Account Details</h2>
-      {isLoading ? (
-        <div className="text-center">Uploading data...</div>
-      ) : (
-        <div className="flex flex-col-reverse">
-          {accountData && (
-            <div className="my-4 ">
-              <div className="bg-white border border-gray-300 rounded-md p-4">
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Full Name:
-                  </label>
-                  <p className="text-gray-900">{accountData.name}</p>
-                </div>
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Email:
-                  </label>
-                  <p className="text-gray-900">{accountData.email}</p>
-                </div>
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Phone{" "}
-                  </label>
-                  <p className="text-gray-900">{accountData.phone}</p>
-                </div>
-                {/* <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Shipping Address:
-                  </label>
-                  <p className="text-gray-900">{accountData.shippingAddress}</p>
-                </div>
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Billing Address:
-                  </label>
-                  <p className="text-gray-900">{accountData.billingAddress}</p>
-                </div> */}
-              </div>
-            </div>
-          )}
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+  <h2 className="text-2xl font-bold mb-4">Account Details</h2>
+  {isLoading ? (
+    <div className="text-center">Uploading data...</div>
+  ) : (
+    <div className="flex flex-col-reverse">
+      {accountData && (
+        <div className="my-4">
+          <div className="bg-white border border-gray-300 rounded-md p-4">
+            <div className="mb-3">
               <label className="block text-sm font-medium text-gray-700">
                 Full Name:
               </label>
-              <input
-                type="text"
-                name="fullName"
-                value={token.user.user_metadata.fullname}
-                disabled
-                className="w-full border border-gray-300 rounded-md py-1.5 px-3 text-gray-700 focus:outline-none focus:border-primary"
-              />
+              <p className="text-gray-900">{accountData.name}</p>
             </div>
-            <div className="mb-4">
+            <div className="mb-3">
               <label className="block text-sm font-medium text-gray-700">
                 Email:
               </label>
-              <input
-                type="email"
-                name="email"
-                value={token.user.email}
-                disabled
-                className="w-full border border-gray-300 rounded-md py-1.5 px-3 text-gray-700 focus:outline-none focus:border-primary"
-              />
+              <p className="text-gray-900">{accountData.email}</p>
             </div>
-            <div className="mb-4">
+            <div className="mb-3">
               <label className="block text-sm font-medium text-gray-700">
-                Phone Number:
+                Phone
               </label>
-              <input
-                type="tel"
-                name="phone"
-                // value={formData.phone}
-                onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md py-1.5 px-3 text-gray-700 focus:outline-none focus:border-primary"
-              />
+              <p className="text-gray-900">{accountData.phone}</p>
             </div>
-            {/* <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Shipping Address:
-              </label>
-              <input
-                type="text"
-                name="shippingAddress"
-                // value={formData.shippingAddress}
-                onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md py-1.5 px-3 text-gray-700 focus:outline-none focus:border-primary"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Billing Address:
-              </label>
-              <input
-                type="text"
-                name="billingAddress"
-                // value={formData.billingAddress}
-                onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md py-1.5 px-3 text-gray-700 focus:outline-none focus:border-primary"
-              />
-            </div> */}
-            {/* Add more fields as needed for account details */}
-            <button
-              type="submit"
-              className="bg-primary text-white py-2 px-4 rounded-md hover:bg-opacity-80 focus:outline-none focus:bg-opacity-80"
-            >
-              Save Details
-            </button>
-          </form>
+            {/* Additional fields (e.g., shipping and billing addresses) can be added here */}
+          </div>
         </div>
       )}
-      <SuccessModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        alertMessage={"Uploaded Succesfully!"}
-      />
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">
+            Full Name:
+          </label>
+          <input
+            type="text"
+            name="fullName"
+            value={token.user.user_metadata.fullname}
+            disabled
+            className="w-full border border-gray-300 rounded-md py-1.5 px-3 text-gray-700 focus:outline-none focus:border-primary"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">
+            Email:
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={token.user.email}
+            disabled
+            className="w-full border border-gray-300 rounded-md py-1.5 px-3 text-gray-700 focus:outline-none focus:border-primary"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">
+            Phone Number:
+          </label>
+          <input
+            type="tel"
+            name="phone"
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded-md py-1.5 px-3 text-gray-700 focus:outline-none focus:border-primary"
+          />
+        </div>
+        {/* Additional fields (e.g., shipping and billing addresses) can be added here */}
+        <button
+          type="submit"
+          className="bg-primary text-white py-2 px-4 rounded-md hover:bg-opacity-80 focus:outline-none focus:bg-opacity-80"
+        >
+          Save Details
+        </button>
+      </form>
     </div>
+  )}
+  <SuccessModal
+    isOpen={isModalOpen}
+    onClose={() => setIsModalOpen(false)}
+    alertMessage={"Uploaded Successfully!"}
+  />
+</div>
+
   );
 };
 
