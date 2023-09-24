@@ -43,7 +43,7 @@ const Cart = () => {
     <AnimatePresence>
       {isCartOpen && (
         <motion.div
-          className="fixed bottom-3 left-3 h-fit w-2/6 bg-white pt-4 rounded-lg shadow-lg z-50"
+          className="fixed bottom-3 left-3 sm:w-3/6 md:w-4/6 lg:w-5/6 xl:w-2/6 bg-white pt-4 rounded-lg shadow-lg z-50"
           initial="closed"
           animate={isCartOpen ? "open" : "closed"}
           exit="closed"
@@ -141,10 +141,16 @@ const Cart = () => {
                 <h3>Subtotal:</h3>
                 <h3>₦{totalPrice.toFixed(2)}</h3>
               </div>
-              <div >
+              <div>
                 <div className="flex justify-center items-center pt-6">
                   {isTokenNotSet ? (
-                    <Link to={"/account"} className="text-red-600"> Please log in to checkout. <span className="underline font-bold capitalize">Login Here</span></Link>
+                    <Link to={"/account"} className="text-red-600">
+                      {" "}
+                      Please log in to checkout.{" "}
+                      <span className="underline font-bold capitalize">
+                        Login Here
+                      </span>
+                    </Link>
                   ) : (
                     <Link
                       to="/checkout"

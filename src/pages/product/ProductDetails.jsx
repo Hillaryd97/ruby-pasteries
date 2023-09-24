@@ -44,7 +44,6 @@ function ProductDetails() {
       } catch (error) {
         console.error("Error fetching products:", error);
         setIsLoading(false);
-        
       }
     };
 
@@ -61,7 +60,7 @@ function ProductDetails() {
             'category': category->,
           }`
         );
-// console.log(similarProductData)
+        // console.log(similarProductData)
         if (similarProductData && similarProductData.length > 0) {
           setSimilarProducts(similarProductData);
           setIsLoading(false);
@@ -117,8 +116,6 @@ function ProductDetails() {
     displayRandomLikableProducts(); // Call the function to display random products
   }, [similarProducts]);
 
-
-
   return (
     <div className="bg-background min-h-screen">
       <div className="container mx-auto">
@@ -128,12 +125,15 @@ function ProductDetails() {
         ) : (
           <div>
             {displayedProducts.map((product) => (
-              <div className="grid grid-cols-2 gap-8 p-8" key={product._id}>
+              <div
+                className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8"
+                key={product._id}
+              >
                 <div className="flex flex-row justify-center items-center">
                   <img
                     src={urlFor(product.image && product.image[0])}
                     alt={product.name}
-                    className="rounded-lg shadow-lg h-[20rem] w-3/4"
+                    className="rounded-lg shadow-lg h-[20rem] md:w-3/4 mx-auto md:mx-0"
                   />
                 </div>
                 <div>
@@ -146,15 +146,14 @@ function ProductDetails() {
                     <div className="flex flex-row border-2 border-black space-x-3 items-center bg-white w-fit px-2">
                       <button
                         className="cursor-pointer text-black hover:text-red-500 transition-colors duration-300"
-                        onClick={decQty} // Call your remove function here
+                        onClick={decQty}
                       >
                         <AiOutlineMinus />
                       </button>
-                      <span className="text-lg font-semibold">{qty}</span>{" "}
-                      {/* Display the current quantity */}
+                      <span className="text-lg font-semibold">{qty}</span>
                       <button
                         className="cursor-pointer text-black hover:text-green-500 transition-colors duration-300"
-                        onClick={incQty} // Call your add function here
+                        onClick={incQty}
                       >
                         <AiOutlinePlus />
                       </button>
@@ -171,8 +170,7 @@ function ProductDetails() {
                   <h4 className="text-lg font-medium mt-4">Description:</h4>
                   <p className="text-gray-800 mt-1">
                     {product.details ||
-                      `Introducing the ${product.name}. This carefully crafted delight is a perfect blend of flavors and textures that will tantalize your taste buds. Whether you're a seasoned foodie or simply craving a delicious snack, our ${product.name} is here to satisfy.
-`}
+                      `Introducing the ${product.name}. This carefully crafted delight is a perfect blend of flavors and textures that will tantalize your taste buds. Whether you're a seasoned foodie or simply craving a delicious snack, our ${product.name} is here to satisfy.`}
                   </p>
                   <p className="text-gray-600 mt-2">
                     Category: {product.category?.name || "Uncategorized"}
@@ -188,24 +186,16 @@ function ProductDetails() {
           You may also like
         </h2>
         <div className="">
-          <div className="grid md:grid-cols-4 grid-cols-3 justify-evenly mx-10 py-10">
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 justify-evenly mx-2 md:mx-10 py-10">
             {displayedLikableProducts.map((product) => (
-              // <a href={`/product/${product.slug.current}`} key={product._id}>
-                <Link to={`/product/${product.slug.current}`} key={product._id}>
-                {/* <a
-                  href={`/product/${product.slug.current}`}
-                  // Optionally add any other attributes or styles you need
-                > */}
+              <Link to={`/product/${product.slug.current}`} key={product._id}>
                 <PastryCard
                   pastry_name={product.name}
                   category={product.category.name}
                   image={urlFor(product.image && product.image[0])}
                   price={product.price}
-                  
                 />
-                {/* </a> */}
               </Link>
-              // {/* </a> */}
             ))}
           </div>
         </div>

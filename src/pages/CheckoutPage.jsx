@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import { useStateContext } from "../../context/StateContext";
 import { supabase } from "../createClient";
 
@@ -17,14 +17,32 @@ const CheckoutPage = () => {
     paymentType, // Add paymentType from context
     setPayment, // Add setPayment function from context
     postCartDetailsToSupabase,
+    handlePhoneChange,
+    handleAddressChange, // Add setAddress function from context
+    phone, // Add phone from context
+    address, // Add address from context
   } = useStateContext();
 
   const token = JSON.parse(sessionStorage.getItem("token"));
+  const navigate = useNavigate();
+  const [showOrderConfirmation, setShowOrderConfirmation] = useState(false);
+
+  const handlePlaceOrder = async () => {
+    await postCartDetailsToSupabase();
+    setShowOrderConfirmation(true);
+
+    // Redirect to the store after 2 seconds
+    setTimeout(() => {
+      navigate("/store");
+    }, 2000);
+  };
 
   // State for user details (you can replace these with your user data)
   const [formData, setFormData] = useState({
     fullname: `${token.user.user_metadata.fullname}`,
     email: `${token.user.email}`,
+    phone: "",
+    address: "",
   });
 
   // State for payment type
@@ -47,6 +65,7 @@ const CheckoutPage = () => {
               </div>
             ))}
             <div className="mt-4">
+            <p className="text-sm italic">** Delivery Fee will be relayed to you during payment process **</p>
               <p className="text-lg font-semibold">
                 Total Quantity: {totalQuantity}
               </p>
@@ -86,6 +105,35 @@ const CheckoutPage = () => {
               />
             </div>
             <div className="mb-4">
+              <label htmlFor="phone" className="text-lg">
+                Phone:
+              </label>
+              <input
+                required
+                type="text"
+                id="phone"
+                className="w-full border rounded py-1 px-2"
+                value={phone}
+                onChange={handlePhoneChange} // Call the function to update the phone in the context
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="address" className="text-lg">
+                Address:{" "}
+                <span className="text-sm">
+                  (Please enter exact address to ensure smooth delivery)
+                </span>
+              </label>
+              <input
+                type="text"
+                required
+                id="address"
+                className="w-full border rounded py-1 px-2"
+                value={address}
+                onChange={handleAddressChange} // Call the function to update the address in the context
+              />
+            </div>
+            <div className="mb-4">
               <label htmlFor="deliveryType" className="text-lg">
                 Delivery Type:
               </label>
@@ -115,7 +163,7 @@ const CheckoutPage = () => {
             </div>
             <button
               className="bg-primary text-white py-2 px-4 rounded-lg hover:bg-opacity-80 duration-300"
-              onClick={postCartDetailsToSupabase}
+              onClick={handlePlaceOrder}
             >
               Place Order
             </button>
@@ -125,6 +173,18 @@ const CheckoutPage = () => {
           </div>
         </div>
       </div>
+      {/* Order Confirmation Pop-up */}
+      {showOrderConfirmation && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 flex flex-col justify-center items-center rounded-lg space-y-1.5 shadow-md md:w-96 md:h-48 text-center">
+            <h2 className="text-primary text-xl font-bold text-center">Thank You</h2>
+            <p className="text-lg font-semibold text-center">
+              Your order has been placed!
+            </p>
+            <Link to={"/store"} className="underline text-center hover:text-primary duration-300">Back To Store</Link>
+          </div>
+        </div>
+       )}
     </div>
   );
 };

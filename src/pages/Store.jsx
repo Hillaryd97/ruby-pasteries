@@ -138,72 +138,79 @@ const Store = () => {
             animate="visible"
             variants={fadeInVariant}
           >
-            <div className="bg-opacity-60 bg-black h-full flex flex-col justify-center items-center text-center text-white p-8">
-              <h1 className="text-2xl font-bold mb-4">
+            <div className="bg-opacity-60 bg-black h-full flex flex-col justify-center items-center text-center text-white p-4 md:p-8">
+              <h1 className="text-lg md:text-2xl font-bold mb-2 md:mb-4">
                 {banner?.title || "Title"}
               </h1>
-              <p className="">
+              <p className="text-xs md:text-sm">
                 {banner?.information ||
                   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit repellendus quo eveniet facilis autem nam error. Autem ipsum dolorum reiciendis soluta nihil, illum cum tempora architecto eveniet, quia consequatur voluptatem."}
               </p>
             </div>
           </motion.div>
         )}
-        <div className="flex flex-col justify-center items-center">
-          <h3 className="font-playfair-display lg:text-3xl text-2xl font-bold text-primary py-2">
-            All Products
-          </h3>
-        </div>
         {searchResults.length > 0 && (
-          <motion.div
-            className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mt-10 lg:mx-20"
-            initial="hidden"
-            animate="visible"
-            variants={fadeInVariant}
-          >
-            {searchResults.map((product) => (
-              <Link to={`/product/${product.slug.current}`}>
-                <a
-                  href={`/product/${product.slug.current}`}
-                  // Optionally add any other attributes or styles you need
-                >
-                  <PastryCard
-                    pastry_name={product.name}
-                    category={product.category.name}
-                    image={urlFor(product.image && product.image[0])}
-                    price={product.price}
-                    key={product._id}
-                  />
-                </a>
-              </Link>
-            ))}
-          </motion.div>
+          <div>
+            <h2 className="lg:text-3xl text-2xl text-center text-primary py-2 ">
+              Search Results
+            </h2>
+            <motion.div
+              className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mt-10 lg:mx-20 justify-center items-center"
+              initial="hidden"
+              animate="visible"
+              variants={fadeInVariant}
+            >
+              {searchResults.map((product) => (
+                <Link to={`/product/${product.slug.current}`}>
+                  <a
+                    href={`/product/${product.slug.current}`}
+                    // Optionally add any other attributes or styles you need
+                  >
+                    <PastryCard
+                      pastry_name={product.name}
+                      category={product.category.name}
+                      image={urlFor(product.image && product.image[0])}
+                      price={product.price}
+                      key={product._id}
+                    />
+                  </a>
+                </Link>
+              ))}
+            </motion.div>
+          </div>
         )}
         {/* Grid for displayedProducts */}
         {
-          <motion.div
-            className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mt-10 lg:mx-20"
-            initial="hidden"
-            animate="visible"
-            variants={fadeInVariant}
-          >
-            {displayedProducts.map((product) => (
-              <Link to={`/product/${product.slug.current}`}>
-              <a
-                href={`/product/${product.slug.current}`}
-                // Optionally add any other attributes or styles you need
-              >
-                <PastryCard
-                  pastry_name={product.name}
-                  category={product.category.name}
-                  image={urlFor(product.image && product.image[0])}
-                  price={product.price}
-                  key={product._id}
-                />
-              </a>
-            </Link>
-            ))}
-          </motion.div>
+          <div>
+            <div className="flex flex-col justify-center items-center">
+              <h3 className="font-playfair-display lg:text-3xl text-2xl font-bold text-primary py-2">
+                All Products
+              </h3>
+            </div>
+            <motion.div
+              className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mt-10 lg:mx-20"
+              initial="hidden"
+              animate="visible"
+              variants={fadeInVariant}
+            >
+              {displayedProducts.map((product) => (
+                <Link to={`/product/${product.slug.current}`}>
+                  <a
+                    href={`/product/${product.slug.current}`}
+                    // Optionally add any other attributes or styles you need
+                  >
+                    <PastryCard
+                      pastry_name={product.name}
+                      category={product.category.name}
+                      image={urlFor(product.image && product.image[0])}
+                      price={product.price}
+                      key={product._id}
+                    />
+                  </a>
+                </Link>
+              ))}
+            </motion.div>
+          </div>
         }
       </div>
       <div className="bg-background">

@@ -4,7 +4,7 @@ const PastryCard = ({ image, price, category, pastry_name, link }) => {
   return (
     <div>
       {/* <Link href={link}> */}
-      <div className="md:w-48 w-44 p-3 py-3 bg-white shadow-sm border rounded-sm flex flex-col mb-10  ease-in-out duration-300 hover:scale-105 transform hover:shadow-lg transition-transform ">
+      <div className="md:w-48 w-40 md:p-3 py-3 p-2 bg-white shadow-sm border rounded-sm flex flex-col mb-10  ease-in-out duration-300 hover:scale-105 transform hover:shadow-lg transition-transform ">
       <img
         src={`${image}`}
         className="md:h-40 h-28 -mt-8 pb-1 md:pb-0 lg:shadow-md shadow-sm rounded-sm"

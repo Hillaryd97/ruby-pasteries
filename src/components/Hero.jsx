@@ -104,12 +104,12 @@ const Hero = () => {
             animate="visible"
             variants={textVariants}
           >
-            <Link className="w-full bg-primary text-white text-lg text-center py-1.5 rounded-xl hover-bg-opacity-80 duration-300 shadow-md font-bold">
+            <Link to={"/store"} className="w-full bg-primary text-white text-lg text-center py-1.5 rounded-xl hover-bg-opacity-80 duration-300 shadow-md font-bold">
               Order Now
             </Link>
-            <Link className="w-full bg-secondary text-black text-lg text-center py-1.5 rounded-xl hover-bg-opacity-60 duration-300 shadow-md font-bold">
+            {/* <Link className="w-full bg-secondary text-black text-lg text-center py-1.5 rounded-xl hover-bg-opacity-60 duration-300 shadow-md font-bold">
               Explore
-            </Link>
+            </Link> */}
           </motion.div>
         </div>
       </div>

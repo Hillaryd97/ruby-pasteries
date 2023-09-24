@@ -2,12 +2,16 @@ import { useStateContext } from "../../context/StateContext";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useState } from "react";
-import { AiOutlineMenu, AiOutlineSearch, AiOutlineShopping } from "react-icons/ai";
+import {
+  AiOutlineMenu,
+  AiOutlineSearch,
+  AiOutlineShopping,
+} from "react-icons/ai";
 import Cart from "./Cart";
 
-
 const Nav = ({ onSearch, handleSearch }) => {
-  const { showCart, setShowCart, totalQuantity, isCartOpen, toggleCart } = useStateContext();
+  const { showCart, setShowCart, totalQuantity, isCartOpen, toggleCart } =
+    useStateContext();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // Track the search query
   // const [isCartOpen, setIsCartOpen] = useState(false);
@@ -88,9 +92,6 @@ const Nav = ({ onSearch, handleSearch }) => {
             >
               About
             </NavLink>
-            <NavLink to={"/contactUs"} className="hover:text-primary hover:font-bold hover:bg-gray-100 hover:scale-105 transition-transform duration-300">
-              Contact Us
-            </NavLink>
           </div>
 
           <form onSubmit={handleSearchSubmit} className="lg:flex hidden">
@@ -109,8 +110,13 @@ const Nav = ({ onSearch, handleSearch }) => {
               <AiOutlineSearch />
             </button>
           </form>
+          <button
+            onClick={toggleNav}
+            className="lg:hidden text-3xl relative z-50 hover:text-primary focus:text-primary text-black"
+          >
+            <AiOutlineMenu />
+          </button>
         </div>
-        <button onClick={toggleNav} className="lg:hidden text-3xl relative z-50 hover:text-primary focus:text-primary text-black"><AiOutlineMenu /></button>
       </div>
       <div
         className={`lg:hidden fixed top-0 right-0 h-full w-64 bg-secondary overflow-y-auto transform ${
@@ -154,27 +160,18 @@ const Nav = ({ onSearch, handleSearch }) => {
               About
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/contact"
-              onClick={toggleNav}
-              className="block py-2 px-4 hover:bg-primary hover:text-white transition duration-300"
-            >
-              Contact Us
-            </NavLink>
-          </li>
         </ul>
       </div>
       <div
-          className="z-50 fixed bottom-5 left-5  bg-white border-2 text-primary border-secondary p-4 rounded-full shadow-lg cursor-pointer"
-          onClick={toggleCart}
-        >
-          <AiOutlineShopping />
-          <span className="absolute -top-1 -right-1 bg-primary text-white rounded-full px-2 py-1 text-xs">
-            {totalQuantity}
-          </span>
-        </div>
-        {isCartOpen && <Cart />}
+        className="z-50 fixed bottom-5 left-5  bg-white border-2 text-primary border-secondary p-4 rounded-full shadow-lg cursor-pointer"
+        onClick={toggleCart}
+      >
+        <AiOutlineShopping />
+        <span className="absolute -top-1 -right-1 bg-primary text-white rounded-full px-2 py-1 text-xs">
+          {totalQuantity}
+        </span>
+      </div>
+      {isCartOpen && <Cart />}
     </div>
   );
 };

@@ -16,23 +16,23 @@ const LoginRegister = ({ setToken }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center lg:flex-row mt-10">
+    <div className="flex flex-col items-center justify-center lg:flex-row mt-10">
       <motion.div
-        className="w-full lg:w-fit p-4 lg:p-8 bg-white rounded-lg shadow-lg"
+        className="w-full flex items-center justify-center lg:w-1/2 p-4 lg:p-8 bg-white rounded-lg shadow-lg"
         initial="hidden" // Set initial animation state
         animate="visible" // Set animate animation state
         variants={slideInFromLeft} // Use the slideInFromLeft animation
       >
-        {/* Content for the left page of the "book" */}
+        {/* Content for the left page */}
         <Register />
       </motion.div>
       <motion.div
-        className="w-full lg:w-fit p-4 lg:p-8 bg-white rounded-lg shadow-lg mt-4 lg:mt-0 lg:ml-4"
+        className=" lg:w-1/2 p-4 flex items-center justify-center lg:p-8 bg-white rounded-lg shadow-lg mt-4 lg:mt-0"
         initial="hidden" // Set initial animation state
         animate="visible" // Set animate animation state
         variants={slideInFromRight} // Use the slideInFromRight animation
       >
-        {/* Content for the right page of the "book" */}
+        {/* Content for the right page */}
         <Login setToken={setToken} />
       </motion.div>
     </div>

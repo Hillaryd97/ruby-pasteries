@@ -9,11 +9,11 @@ import Account from "./pages/Account";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Store from "./pages/Store";
-import { useEffect, useState } from "react";
 import ProductDetails from "./pages/product/ProductDetails";
-// import Home from "./pages/Home";
 import { StateContext } from "../context/StateContext";
 import CheckoutPage from "./pages/CheckoutPage";
+import Dashboard from "./admin_pages/Dashboard";
+import About from "./pages/About";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,8 +25,8 @@ const router = createBrowserRouter(
       <Route path="/store" element={<Store />} />
       <Route path="/checkout" element={<CheckoutPage />} />
       <Route path="/product/:slug" element={<ProductDetails />} />
-      {/* <Route path="/accounthome" element={<AccountHome />} /> */}
-      {/* <Route path="/home" element={<Home />} /> */}
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/about" element={<About />} />
     </Route>
   )
 );

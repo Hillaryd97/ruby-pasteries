@@ -34,11 +34,11 @@ const AllCategories = () => {
           {categories?.map((category) => (
             <div
               key={category._id}
-              className="space-x-2 hover:text-primary font-semibold duration-300 rounded-full hover:shadow-md flex justify-center py-1.5"
+              className="space-x-2  hover:text-primary font-semibold duration-300 rounded-full flex lg:justify-center py-1.5"
             >
-              <Link to={`/category/${category._id}`}>
+              <p>
                 {category.name} <span>({category.productCount})</span>
-              </Link>
+              </p>
             </div>
           ))}
         </div>

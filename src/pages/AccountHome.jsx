@@ -21,7 +21,7 @@ const AccountHome = ({ token }) => {
 //   }
 
   return (
-    <div className="bg-gray-200 flex lg:flex-row flex-col">
+    <div className="bg-gray-200 flex lg:flex-row flex-col mx-4">
       <nav className="bg-white shadow-md lg:w-[25%]">
         <ul className="flex flex-row justify-between items-center lg:items-start lg:space-y-4 lg:flex-col md:p-4 p-3">
           <li

@@ -2,11 +2,16 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useState } from "react";
 import Cart from "./Cart";
-import { AiOutlineMenu, AiOutlineSearch, AiOutlineShopping } from "react-icons/ai";
+import {
+  AiOutlineMenu,
+  AiOutlineSearch,
+  AiOutlineShopping,
+} from "react-icons/ai";
 import { useStateContext } from "../../context/StateContext";
 
 const NavAll = ({ onSearch, handleSearch }) => {
-  const { showCart, setShowCart, totalQuantity, isCartOpen, toggleCart } = useStateContext();
+  const { showCart, setShowCart, totalQuantity, isCartOpen, toggleCart } =
+    useStateContext();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // Track the search query
   // const [isCartOpen, setIsCartOpen] = useState(false);
@@ -16,7 +21,6 @@ const NavAll = ({ onSearch, handleSearch }) => {
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };
-
 
   const handleSearchChange = (e) => {
     const inputValue = e.target.value;
@@ -34,7 +38,7 @@ const NavAll = ({ onSearch, handleSearch }) => {
   return (
     <div>
       <div className="">
-        <div className="flex justify-between items-center py-3 pt-4">
+        <div className="flex justify-between items-center mx-4 py-3 pt-4">
           <div className="flex lg:items-center flex-col lg:-space-y-2">
             <img src={logo} alt="" className=" w-20 -ml-2" />
             <p className="font-playfair-display lg:text-sm hidden lg:block font-bold uppercase bg-clip-text text-transparent bg-gradient-to-b from-primary to-red-950">
@@ -83,11 +87,8 @@ const NavAll = ({ onSearch, handleSearch }) => {
             >
               About
             </NavLink>
-            <NavLink to={"/contactUs"} className="hover:text-primary hover:font-bold hover:bg-gray-100 hover:scale-105 transition-transform duration-300">
-              Contact Us
-            </NavLink>
           </div>
-{/* 
+          {/* 
           <form onSubmit={handleSearchSubmit} className="lg:flex hidden">
             <input
               type="text"
@@ -104,8 +105,12 @@ const NavAll = ({ onSearch, handleSearch }) => {
               <AiOutlineSearch />
             </button>
           </form> */}
-        <button onClick={toggleNav} className="lg:hidden text-3xl relative z-50 hover:text-primary focus:text-primary text-black"><AiOutlineMenu /></button>
-
+          <button
+            onClick={toggleNav}
+            className="lg:hidden text-3xl relative z-50 hover:text-primary focus:text-primary text-black"
+          >
+            <AiOutlineMenu />
+          </button>
         </div>
       </div>
       <div
@@ -152,27 +157,18 @@ const NavAll = ({ onSearch, handleSearch }) => {
               About
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/contact"
-              onClick={toggleNav}
-              className="block py-2 px-4 hover:bg-primary hover:text-white transition duration-300"
-            >
-              Contact Us
-            </NavLink>
-          </li>
         </ul>
       </div>
       <div
-          className="z-50 fixed bottom-5 left-5  bg-white border-2 text-primary border-secondary p-4 rounded-full shadow-lg cursor-pointer"
-          onClick={toggleCart}
-        >
-          <AiOutlineShopping />
-          <span className="absolute -top-1 -right-1 bg-primary text-white rounded-full px-2 py-1 text-xs">
-            {totalQuantity}
-          </span>
-        </div>
-        {isCartOpen && <Cart />}
+        className="z-50 fixed bottom-5 left-5  bg-white border-2 text-primary border-secondary p-4 rounded-full shadow-lg cursor-pointer"
+        onClick={toggleCart}
+      >
+        <AiOutlineShopping />
+        <span className="absolute -top-1 -right-1 bg-primary text-white rounded-full px-2 py-1 text-xs">
+          {totalQuantity}
+        </span>
+      </div>
+      {isCartOpen && <Cart />}
     </div>
   );
 };
