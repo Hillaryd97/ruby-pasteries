@@ -1,6 +1,7 @@
 import React from "react";
 import NavAll from "../components/NavAll";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -88,7 +89,7 @@ const About = () => {
           <div className=" bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6">
             <h2 className="text-3xl font-semibold text-red-800 mb-4">
               Join Us
-            </h2>
+            </h2><Link to={"/adminDashboard_R$#k9PqX*3zYtW&7"}>Dashboard</Link>
             <p className="text-gray-800">
               We invite you to explore our website, browse our mouthwatering
               selection, and place an order to experience the magic of Ruby
