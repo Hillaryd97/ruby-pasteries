@@ -25,7 +25,7 @@ const router = createBrowserRouter(
       <Route path="/store" element={<Store />} />
       <Route path="/checkout" element={<CheckoutPage />} />
       <Route path="/product/:slug" element={<ProductDetails />} />
-      <Route path="/adminDashboardk9PqX*3zYtW&7" element={<Dashboard />} />
+      <Route path="/adminDashboardrubyPastries233333222222" element={<Dashboard />} />
       <Route path="/about" element={<About />} />
     </Route>
   )
