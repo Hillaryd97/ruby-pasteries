@@ -7,7 +7,7 @@ import { MdEmail } from "react-icons/md";
 const Footer = () => {
   return (
     <div className="bg-black">
-      <div className="container mx-auto py-6 space-x-4 bg-black lg:justify-evenly justify-center text-white flex md:flex-row flex-col">
+      <div className="container mx-auto py-6 md:space-x-4 bg-black lg:justify-evenly justify-center text-white flex md:flex-row flex-col">
         <div className="flex justify-center flex-col items-center h-full">
           <div className="flex items-center -space-x-1">
             <img src={logo} alt="" className=" w-20 -ml-2" />
@@ -26,7 +26,7 @@ const Footer = () => {
           <p>- Verve</p>
           <p>- MasterCard</p>
         </div>
-        <div className="flex flex-col lg:items-start text-sm  w-fit md:max-w-1/4 items-center">
+        <div className="flex flex-col lg:items-start text-sm  items-center md:max-w-1/4">
           <h5 className="font-playfair-display font-semibold text-base text-secondary">
             What We Offer
           </h5>
@@ -34,12 +34,12 @@ const Footer = () => {
           <p>Bread</p>
           <p>Outdoor Events</p>
         </div>
-        <div className="flex flex-col lg:items-start text-sm  w-1/4 md:max-w-1/4 space-y-2 items-center">
+        <div className="flex flex-col lg:items-start text-sm space-y-2 items-center md:max-w-1/4">
           <h5 className="font-playfair-display font-semibold text-base text-secondary">
             Shop Location
           </h5>
-          <div className="flex space-x-2 items-center">
-            <HiLocationMarker size={60} />
+          <div className="flex space-x-2 items-center text-center px-2">
+            {/* <HiLocationMarker /> */}
             <address className="text-justify">
               <span className="font-bold"> Nasarawa </span> - Ruby Bakery, No.
               10, Alloyd Monek International School Avenue, Karu Local
@@ -49,7 +49,7 @@ const Footer = () => {
             </address>
           </div>
         </div>
-        <div className="flex flex-col lg:items-start text-sm  w-fit md:max-w-1/4 pr-5 items-center">
+        <div className="flex flex-col lg:items-start text-sm  items-center md:max-w-1/4">
           <h5 className="font-playfair-display font-semibold text-base text-secondary">
             Contact Us
           </h5>
