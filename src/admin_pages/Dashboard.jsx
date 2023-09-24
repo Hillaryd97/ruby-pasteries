@@ -90,7 +90,7 @@ const Dashboard = () => {
     <div className="bg-gray-100 min-h-screen ">
       <div className="container mx-auto py-8 bg-white p-4 rounded-lg shadow-md mb-8">
         <div className="flex justify-between items-center">
-          <div childr>
+          <div>
             <h1 className="text-3xl font-semibold text-primary mb-1">
               Admin Dashboard
             </h1>
@@ -100,7 +100,7 @@ const Dashboard = () => {
           </div>
           <a
             href={sanityCmsUrl}
-            className="bg-green-600 h-fit text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300 flex items-center justify-center space-x-2"
+            className="hidden bg-green-600 h-fit text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300 lg:flex items-center justify-center space-x-2"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -109,6 +109,15 @@ const Dashboard = () => {
           </a>
         </div>
         <OrderStatus />
+        <a
+            href={sanityCmsUrl}
+            className="lg:hidden mt-3 bg-green-600 h-fit text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300 flex items-center justify-center space-x-2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaPlus className="text-xl" /> {/* The React Icons component */}
+            <span>Add New Product</span>
+          </a>
         <div className="overflow-x-auto my-10">
           <table className="min-w-full divide-y divide-gray-200">
             <thead>
