@@ -12,19 +12,19 @@ const About = () => {
           About Us
         </h1>
         <div className="p-6 flex md:text-center items-center justify-center">
-            <div className="flex flex-col md:w-5/6">
-          <h2 className="text-3xl text-center font-semibold text-red-800 mb-4">
-            Welcome to Ruby Pastries
-          </h2>
-          <p className="text-gray-800">
-            Indulge in a world of exquisite flavors and culinary artistry at
-            Ruby Pastries. We are dedicated to creating delightful finger foods
-            that will awaken your taste buds and elevate your dining experience
-            to new heights. From our mouthwatering bread selections to our
-            tantalizing snacks, every item in our menu is carefully crafted to
-            delight your senses and satisfy your cravings.
-          </p>
-        </div>
+          <div className="flex flex-col md:w-5/6">
+            <h2 className="text-3xl text-center font-semibold text-red-800 mb-4">
+              Welcome to Ruby Pastries
+            </h2>
+            <p className="text-gray-800">
+              Indulge in a world of exquisite flavors and culinary artistry at
+              Ruby Pastries. We are dedicated to creating delightful finger
+              foods that will awaken your taste buds and elevate your dining
+              experience to new heights. From our mouthwatering bread selections
+              to our tantalizing snacks, every item in our menu is carefully
+              crafted to delight your senses and satisfy your cravings.
+            </p>
+          </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <div className=" bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6">
@@ -89,7 +89,7 @@ const About = () => {
           <div className=" bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6">
             <h2 className="text-3xl font-semibold text-red-800 mb-4">
               Join Us
-            </h2><Link to={"/adminDashboardk9PqX*3zYtW&7"}>Dashboard</Link>
+            </h2>{" "}
             <p className="text-gray-800">
               We invite you to explore our website, browse our mouthwatering
               selection, and place an order to experience the magic of Ruby
@@ -148,7 +148,7 @@ const About = () => {
           <p className="">Copyright &copy; 2023 Ruby Pastries</p>
           <p>Powered by Ruby Pastries</p>
         </div>
-      </div>                                                                                            
+      </div>
     </div>
   );
 };

@@ -116,6 +116,7 @@ export const StateContext = ({ children }) => {
       setIsSubmitting(false);
       console.error("Error posting cart details to Supabase:", error.message);
     }
+    clearCart();
   };
 
   // Load cart data from local storage when the component mounts

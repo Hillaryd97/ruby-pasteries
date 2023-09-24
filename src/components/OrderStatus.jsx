@@ -66,7 +66,7 @@ const OrderStatus = () => {
     <div className="">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-green-200 p-4 rounded-md hover:shadow-lg transition duration-300 transform hover:scale-105">
-          <h3 className="text-lg font-semibold">New Orders</h3>
+          <h3 className="text-lg font-semibold">Incomplete Orders</h3>
           <p className="text-2xl font-bold">{newOrders.length}</p>
         </div>
         <div className="bg-blue-200 p-4 rounded-md hover:shadow-lg transition duration-300 transform hover:scale-105">
