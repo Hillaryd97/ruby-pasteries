@@ -7,7 +7,7 @@ import { MdEmail } from "react-icons/md";
 const Footer = () => {
   return (
     <div className="bg-black">
-      <div className="container mx-auto py-6 space-x-4 bg-black lg:justify-evenly justify-center text-white flex flex-row">
+      <div className="container mx-auto py-6 space-x-4 bg-black lg:justify-evenly justify-center text-white flex md:flex-row flex-col">
         <div className="flex justify-center flex-col items-center h-full">
           <div className="flex items-center -space-x-1">
             <img src={logo} alt="" className=" w-20 -ml-2" />
@@ -18,7 +18,7 @@ const Footer = () => {
             elevate your culinary journey.
           </p> */}
         </div>
-        <div className="flex flex-col lg:items-start text-sm  items-center max-w-1/4">
+        <div className="flex flex-col lg:items-start text-sm  items-center md:max-w-1/4">
           <h5 className="font-playfair-display font-semibold text-base text-secondary">
             Accepted Payment Methods
           </h5>
@@ -26,7 +26,7 @@ const Footer = () => {
           <p>- Verve</p>
           <p>- MasterCard</p>
         </div>
-        <div className="flex flex-col lg:items-start text-sm  w-fit max-w-1/4 items-center">
+        <div className="flex flex-col lg:items-start text-sm  w-fit md:max-w-1/4 items-center">
           <h5 className="font-playfair-display font-semibold text-base text-secondary">
             What We Offer
           </h5>
@@ -34,7 +34,7 @@ const Footer = () => {
           <p>Bread</p>
           <p>Outdoor Events</p>
         </div>
-        <div className="flex flex-col lg:items-start text-sm  w-1/4 max-w-1/4 space-y-2 items-center">
+        <div className="flex flex-col lg:items-start text-sm  w-1/4 md:max-w-1/4 space-y-2 items-center">
           <h5 className="font-playfair-display font-semibold text-base text-secondary">
             Shop Location
           </h5>
@@ -49,7 +49,7 @@ const Footer = () => {
             </address>
           </div>
         </div>
-        <div className="flex flex-col lg:items-start text-sm  w-fit max-w-1/4 pr-5 items-center">
+        <div className="flex flex-col lg:items-start text-sm  w-fit md:max-w-1/4 pr-5 items-center">
           <h5 className="font-playfair-display font-semibold text-base text-secondary">
             Contact Us
           </h5>
