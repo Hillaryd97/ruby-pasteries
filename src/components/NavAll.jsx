@@ -87,6 +87,13 @@ const NavAll = ({ onSearch, handleSearch }) => {
             >
               About
             </NavLink>
+
+            <div
+              className="flex lg:hidden text-primary cursor-pointer"
+              onClick={toggleCart}
+            >
+              <AiOutlineShopping size={35} />
+            </div>
           </div>
           {/* 
           <form onSubmit={handleSearchSubmit} className="lg:flex hidden">
@@ -105,12 +112,22 @@ const NavAll = ({ onSearch, handleSearch }) => {
               <AiOutlineSearch />
             </button>
           </form> */}
-          <button
-            onClick={toggleNav}
-            className="lg:hidden text-3xl relative z-50 hover:text-primary focus:text-primary text-black"
-          >
-            <AiOutlineMenu />
-          </button>
+
+          <div className="flex space-x-2 items-center justify-center">
+            <div
+              className="flex lg:hidden text-primary cursor-pointer"
+              onClick={toggleCart}
+            >
+              <AiOutlineShopping size={35} />
+            </div>
+
+            <button
+              onClick={toggleNav}
+              className="lg:hidden text-3xl relative z-50 hover:text-primary focus:text-primary text-black"
+            >
+              <AiOutlineMenu />
+            </button>
+          </div>
         </div>
       </div>
       <div

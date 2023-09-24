@@ -67,7 +67,7 @@ const Nav = ({ onSearch, handleSearch }) => {
             </button>
           </form>
           {/* ... (rest of your navigation code) */}
-          <div className="lg:flex hidden space-x-3 uppercase font-semibold justify-evenly">
+          <div className="lg:flex hidden space-x-3 uppercase items-center font-semibold justify-evenly">
             <NavLink
               to={"/"}
               className="hover:text-primary hover:font-bold hover:bg-gray-100 hover:scale-105 transition-transform duration-300"
@@ -92,6 +92,15 @@ const Nav = ({ onSearch, handleSearch }) => {
             >
               About
             </NavLink>
+            <div
+              className="flex text-primary cursor-pointer"
+              onClick={toggleCart}
+            >
+              <AiOutlineShopping size={35} />
+              {/* <span className="text-black px-2 py-1 text-xs">
+              ({totalQuantity})
+            </span> */}
+            </div>
           </div>
 
           <form onSubmit={handleSearchSubmit} className="lg:flex hidden">
