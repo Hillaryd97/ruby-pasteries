@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useStateContext } from "../../context/StateContext";
 import { supabase } from "../createClient";
 
@@ -28,15 +28,22 @@ const CheckoutPage = () => {
   const [showOrderConfirmation, setShowOrderConfirmation] = useState(false);
 
   const handlePlaceOrder = async () => {
+    if (cartItems.length === 0) {
+      alert(
+        "Your cart is empty. Please add items to your cart before checking out."
+      );
+      return; // Don't proceed with the submission
+    }
+  
     await postCartDetailsToSupabase();
     setShowOrderConfirmation(true);
-
+  
     // Redirect to the store after 2 seconds
     setTimeout(() => {
       navigate("/store");
     }, 2000);
   };
-
+  
   // State for user details (you can replace these with your user data)
   const [formData, setFormData] = useState({
     fullname: `${token.user.user_metadata.fullname}`,
@@ -65,7 +72,9 @@ const CheckoutPage = () => {
               </div>
             ))}
             <div className="mt-4">
-            <p className="text-sm italic">** Delivery Fee will be relayed to you during payment process **</p>
+              <p className="text-sm italic">
+                ** Delivery Fee will be relayed to you during payment process **
+              </p>
               <p className="text-lg font-semibold">
                 Total Quantity: {totalQuantity}
               </p>
@@ -74,7 +83,7 @@ const CheckoutPage = () => {
               </p>
             </div>
           </div>
-          <div>
+          <form>
             <h3 className="text-xl font-semibold mb-4">Delivery Details</h3>
             <div className="mb-4">
               <label htmlFor="name" className="text-lg">
@@ -106,7 +115,7 @@ const CheckoutPage = () => {
             </div>
             <div className="mb-4">
               <label htmlFor="phone" className="text-lg">
-                Phone:
+                Phone: <span className="text-red-500">*</span>
               </label>
               <input
                 required
@@ -122,7 +131,7 @@ const CheckoutPage = () => {
                 Address:{" "}
                 <span className="text-sm">
                   (Please enter exact address to ensure smooth delivery)
-                </span>
+                </span> <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -161,6 +170,22 @@ const CheckoutPage = () => {
                 <option value="Pay On Delivery">Pay On Delivery</option>
               </select>
             </div>
+            {paymentType === "Bank Transfer" && (
+              <div className="mb-4">
+                <h3 className="text-lg font-semibold">Bank Account Details:</h3>
+                <p>
+                  <span className="font-bold">Name:</span> Ruby Integrated
+                  Global Services Limited
+                </p>
+                <p>
+                  <span className="font-bold">Account Numbers:</span>
+                  <br />
+                  0013026916 (Jaiz bank)
+                  <br />
+                  0037940253 (Stanbic IBTC)
+                </p>
+              </div>
+            )}
             <button
               className="bg-primary text-white py-2 px-4 rounded-lg hover:bg-opacity-80 duration-300"
               onClick={handlePlaceOrder}
@@ -170,21 +195,28 @@ const CheckoutPage = () => {
             <Link to="/store" className="block mt-4 text-primary">
               Back to Store
             </Link>
-          </div>
+          </form>
         </div>
       </div>
       {/* Order Confirmation Pop-up */}
       {showOrderConfirmation && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 flex flex-col justify-center items-center rounded-lg space-y-1.5 shadow-md md:w-96 md:h-48 text-center">
-            <h2 className="text-primary text-xl font-bold text-center">Thank You</h2>
+            <h2 className="text-primary text-xl font-bold text-center">
+              Thank You
+            </h2>
             <p className="text-lg font-semibold text-center">
               Your order has been placed!
             </p>
-            <Link to={"/store"} className="underline text-center hover:text-primary duration-300">Back To Store</Link>
+            <Link
+              to={"/store"}
+              className="underline text-center hover:text-primary duration-300"
+            >
+              Back To Store
+            </Link>
           </div>
         </div>
-       )}
+      )}
     </div>
   );
 };
