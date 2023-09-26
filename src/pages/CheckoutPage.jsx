@@ -36,7 +36,7 @@ const CheckoutPage = () => {
 
     // setTimeout(() => {
       navigate("/store");
-    // }, 2000);
+    // }, 2000); 
   };
 
   const token = JSON.parse(sessionStorage.getItem("token"));
