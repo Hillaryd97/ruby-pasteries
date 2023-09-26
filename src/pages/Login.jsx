@@ -2,7 +2,7 @@ import { useState } from "react";
 import { supabase } from "../createClient";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = ({setToken}) => {
+const Login = ({ setToken }) => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -28,12 +28,12 @@ const Login = ({setToken}) => {
         email: formData.email,
         password: formData.password,
       });
-      if (error) throw error
-    //   alert(
-    //     `Login Sucessful! Check ${formData.email} for verification link`
-    //   );
-    setToken(data)
-    console.log(data)
+      if (error) throw error;
+      //   alert(
+      //     `Login Sucessful! Check ${formData.email} for verification link`
+      //   );
+      setToken(data);
+      console.log(data);
 
       navigate("/account");
     } catch (error) {
@@ -60,6 +60,7 @@ const Login = ({setToken}) => {
                 placeholder="Email Address "
                 name="email"
                 onChange={handleChange}
+                required
                 className="border border-b-1 border-gray-400 p-1.5 mt-1 lg:py-0.5 px-2 rounded-md"
               />
             </div>
@@ -72,6 +73,7 @@ const Login = ({setToken}) => {
                 placeholder="Password "
                 name="password"
                 onChange={handleChange}
+                required
                 className="border border-b-1 border-gray-400 p-1.5 mt-1 lg:py-0.5 px-2 rounded-md"
               />
             </div>
@@ -79,18 +81,9 @@ const Login = ({setToken}) => {
               type="submit"
               className="shadow-lg bg-red-600 text-white py-1 px-2 font-bold rounded-md hover:bg-red-400 hover:ease-in-out duration-300"
             >
-             Login
+              Login
             </button>
           </form>
-          {/* <p className="text-center pt-4">
-            Not a user?{" "}
-            <Link
-              to={"/register"}
-              className="text-red-600 hover:text-red-400 hover:ease-in-out duration-300"
-            >
-              Register
-            </Link>
-          </p> */}
         </div>
       </div>
     </div>

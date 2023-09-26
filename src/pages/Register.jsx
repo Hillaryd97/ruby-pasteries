@@ -65,6 +65,7 @@ const Register = () => {
                 placeholder="Full Name"
                 name="fullname"
                 onChange={handleChange}
+                required
                 className="border border-b-1 border-gray-400 p-1.5 mt-1 lg:py-0.5 px-2 rounded-md"
               />
             </div>
@@ -77,6 +78,7 @@ const Register = () => {
                 placeholder="Email Address "
                 name="email"
                 onChange={handleChange}
+                required
                 className="border border-b-1 border-gray-400 p-1.5 mt-1 lg:py-0.5 px-2 rounded-md"
               />
             </div>
@@ -89,6 +91,7 @@ const Register = () => {
                 placeholder="Password "
                 name="password"
                 onChange={handleChange}
+                required
                 className="border border-b-1 border-gray-400 p-1.5 mt-1 lg:py-0.5 px-2 rounded-md"
               />
             </div>
