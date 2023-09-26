@@ -13,7 +13,8 @@ export const StateContext = ({ children }) => {
   const token = JSON.parse(sessionStorage.getItem("token"));
   const [phone, setPhone] = useState(""); // Add phone state
   const [address, setAddress] = useState(""); // Add address state
-  
+  const [deliveryLocation, setDeliveryLocation] = useState("Abuja"); // Set your default location here
+
   let foundProduct;
   let index;
 
@@ -28,6 +29,51 @@ export const StateContext = ({ children }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [paymentType, setPaymentType] = useState("Bank Transfer"); // New state for payment type
   const [deliveryType, setDeliveryType] = useState("Home Delivery");
+  const [updatedTotalPrice, setupdatedTotalPrice] = useState(0);
+  const deliveryFees = {
+    "ABACHA BARRACKS": 2500,
+    AIRPORT: 6000,
+    "APO 1": 2500,
+    "APO 2": 2500,
+    "APO 3": 2500,
+    ASOKORO: 2000,
+    CBD: 1500,
+    DAWAKI: 3000,
+    DURUMI: 2500,
+    DUTSE: 4000,
+    GADUWA: 2500,
+    GALADIMAWA: 2500,
+    GARKI: 2000,
+    GISHIRI: 2000,
+    GUDU: 2500,
+    GUZAPE: 2500,
+    "GWARIMPA 1": 3000,
+    "GWARIMPA 2": 3500,
+    IDU: 2500,
+    JABI: 2000,
+    JAHI: 2000,
+    JIKWOYI: 3500,
+    KADO: 2500,
+    KARIMO: 3000,
+    KARO: 3000,
+    KATAMPE: 2500,
+    "KUBWA 1": 3500,
+    "KUBWA 2": 4000,
+    KUJE: 6000,
+    "LIFE CAMP 1": 2500,
+    "LIFE CAMP 2": 3000,
+    LOKOGOMA: 2500,
+    "LUGBE 1": 3000,
+    "LUGBE 2": 3500,
+    "LUNGI BARRACKS": 2000,
+    MABUSHI: 2000,
+    MAITAMA: 1500,
+    MPAPE: 2500,
+    SAUKA: 5000,
+    UTAKO: 2000,
+    WUSE: 1500,
+    WUYE: 2000,
+  };
 
   const setDelivery = (type) => {
     setDeliveryType(type);
@@ -36,7 +82,6 @@ export const StateContext = ({ children }) => {
   const setPayment = (type) => {
     setPaymentType(type);
   };
-
 
   const handlePhoneChange = (e) => {
     const phoneValue = e.target.value;
@@ -50,6 +95,119 @@ export const StateContext = ({ children }) => {
     setAddress(addressValue); // Update the address in the context
   };
 
+  const [deliveryFee, setDeliveryFee] = useState(0); // Initialize with 0
+
+  const calculateDeliveryFee = () => {
+    if (deliveryType === "Home Delivery") {
+    } else if (deliveryType === "AIRPORT") {
+      return 6000.0;
+    } else if (deliveryType === "APO 1") {
+      return 2500.0;
+    } else if (deliveryType === "APO 2") {
+      return 2500.0;
+    } else if (deliveryType === "APO 3") {
+      return 2500.0;
+    } else if (deliveryType === "ASOKORO") {
+      return 2000.0;
+    } else if (deliveryType === "CBD") {
+      return 1500.0;
+    } else if (deliveryType === "DAWAKI") {
+      return 3000.0;
+    } else if (deliveryType === "DURUMI") {
+      return 2500.0;
+    } else if (deliveryType === "DUTSE") {
+      return 4000.0;
+    } else if (deliveryType === "GADUWA") {
+      return 2500.0;
+    } else if (deliveryType === "GALADIMAWA") {
+      return 2500.0;
+    } else if (deliveryType === "GARKI") {
+      return 2000.0;
+    } else if (deliveryType === "GISHIRI") {
+      return 2000.0;
+    } else if (deliveryType === "GUDU") {
+      return 2500.0;
+    } else if (deliveryType === "GUZAPE") {
+      return 2500.0;
+    } else if (deliveryType === "GWARIMPA 1") {
+      return 3000.0;
+    } else if (deliveryType === "GWARIMPA 2") {
+      return 3500.0;
+    } else if (deliveryType === "IDU") {
+      return 2500.0;
+    } else if (deliveryType === "JABI") {
+      return 2000.0;
+    } else if (deliveryType === "JAHI") {
+      return 2000.0;
+    } else if (deliveryType === "JIKWOYI") {
+      return 3500.0;
+    } else if (deliveryType === "KADO") {
+      return 2500.0;
+    } else if (deliveryType === "KARIMO") {
+      return 3000.0;
+    } else if (deliveryType === "KARO") {
+      return 3000.0;
+    } else if (deliveryType === "KATAMPE") {
+      return 2500.0;
+    } else if (deliveryType === "KUBWA 1") {
+      return 3500.0;
+    } else if (deliveryType === "KUBWA 2") {
+      return 4000.0;
+    } else if (deliveryType === "KUJE") {
+      return 6000.0;
+    } else if (deliveryType === "LIFE CAMP 1") {
+      return 2500.0;
+    } else if (deliveryType === "LIFE CAMP 2") {
+      return 3000.0;
+    } else if (deliveryType === "LOKOGOMA") {
+      return 2500.0;
+    } else if (deliveryType === "LUGBE 1") {
+      return 3000.0;
+    } else if (deliveryType === "LUGBE 2") {
+      return 3500.0;
+    } else if (deliveryType === "LUNGI BARRACKS") {
+      return 2000.0;
+    } else if (deliveryType === "MABUSHI") {
+      return 2000.0;
+    } else if (deliveryType === "MAITAMA") {
+      return 1500.0;
+    } else if (deliveryType === "MPAPE") {
+      return 2500.0;
+    } else if (deliveryType === "SAUKA") {
+      return 5000.0;
+    } else if (deliveryType === "UTAKO") {
+      return 2000.0;
+    } else if (deliveryType === "WUSE") {
+      return 1500.0;
+    } else if (deliveryType === "WUYE") {
+      return 2000.0;
+    } else if (deliveryType === "ABACHA BARRACKS") {
+      return 2500.0;
+    } else if (deliveryType === "Pickup") {
+      return 0.0; // No delivery fee for Pickup
+    }
+
+    return 0.0; // Default to 0 if deliveryType is not recognized
+  };
+
+  // Update delivery fee when deliveryType changes
+  useEffect(() => {
+    const fee = calculateDeliveryFee();
+    setDeliveryFee(fee);
+  }, [deliveryType]);
+
+  // Calculate the total price including delivery fee
+  const totalWithDelivery = totalPrice + deliveryFee;
+
+  // // Update delivery fee when deliveryType changes
+  // useEffect(() => {
+  //   const fee = calculateDeliveryFee();
+  //   setDeliveryFee(fee);
+  // }, [deliveryType]);
+
+  // // / Calculate the total price including delivery fee
+  // const totalWithDelivery = totalPrice + deliveryFee;
+
   const productNamesString = productNamesWithQuantity.join(", ");
   const postCartDetailsToSupabase = async () => {
     try {
@@ -59,6 +217,9 @@ export const StateContext = ({ children }) => {
         );
         return; // Don't proceed with the submission
       }
+
+      // setupdatedTotalPrice(totalPrice + deliveryFee);
+
       setIsSubmitting(true); // Disable the submit button
 
       // Fetch existing rows with the same email
@@ -91,7 +252,7 @@ export const StateContext = ({ children }) => {
             email: token.user.email,
             product_name: productNamesString, // Concatenate product names
             quantity: totalQuantity,
-            total_price: totalPrice,
+            total_price: totalWithDelivery, // Update the total price with delivery fee
             delivery_type: deliveryType,
             payment_type: paymentType,
             phone: phone, // Include phone in the data
@@ -106,6 +267,7 @@ export const StateContext = ({ children }) => {
 
         // Data has been successfully inserted or updated in Supabase
         console.log("Cart details posted to Supabase:", data);
+        console.log(totalWithDelivery);
       } else {
         // A row with a similar created_at already exists, handle accordingly
         alert("A similar order already exists!");
@@ -116,7 +278,7 @@ export const StateContext = ({ children }) => {
       setIsSubmitting(false);
       console.error("Error posting cart details to Supabase:", error.message);
     }
-    clearCart();
+    // clearCart();
   };
 
   // Load cart data from local storage when the component mounts
@@ -254,6 +416,12 @@ export const StateContext = ({ children }) => {
         handlePhoneChange,
         phone, // Provide phone to the context
         address, // Provide address to the context
+        updatedTotalPrice,
+        calculateDeliveryFee,
+        deliveryFee,
+        setDeliveryFee,
+        totalWithDelivery,
+        deliveryFees,
       }}
     >
       {children}
