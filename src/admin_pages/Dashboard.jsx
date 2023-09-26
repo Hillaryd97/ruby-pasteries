@@ -173,7 +173,7 @@ const Dashboard = () => {
                     {order.customer_name}
                   </td>
                   <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                    {order.phone}
+                    { order.phone}
                   </td>
                   <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                     {order.email}
