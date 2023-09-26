@@ -89,7 +89,7 @@ const Dashboard = () => {
   return (
     <div className="bg-gray-100 min-h-screen ">
      
-     <p className="">Under Construction. Please check back later</p>
+     <p className="text-xl">Under Construction. Please check back later</p>
 
     </div>
   );
