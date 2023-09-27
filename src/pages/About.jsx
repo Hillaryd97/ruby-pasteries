@@ -1,6 +1,7 @@
 import React from "react";
 import NavAll from "../components/NavAll";
 import logo from "../assets/logo.png";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const About = () => {
@@ -8,26 +9,49 @@ const About = () => {
     <div className="relative bg-background min-h-screen">
       <NavAll />
       <div className="container mx-auto p-8 relative z-10">
-        <h1 className="text-4xl font-bold text-red-800 text-center mb-8">
+        <motion.h1
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl font-bold text-red-800 text-center mb-8"
+        >
           About Us
-        </h1>
+        </motion.h1>
         <div className="p-6 flex md:text-center items-center justify-center">
           <div className="flex flex-col md:w-5/6">
-            <h2 className="text-3xl text-center font-semibold text-red-800 mb-4">
+            {/* Add animations to the subheading */}
+            <motion.h2
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-3xl text-center font-semibold text-red-800 mb-4"
+            >
               Welcome to Ruby Pastries
-            </h2>
-            <p className="text-gray-800">
+            </motion.h2>
+            {/* Add animations to the paragraphs */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-gray-800"
+            >
               Indulge in a world of exquisite flavors and culinary artistry at
               Ruby Pastries. We are dedicated to creating delightful finger
               foods that will awaken your taste buds and elevate your dining
               experience to new heights. From our mouthwatering bread selections
               to our tantalizing snacks, every item in our menu is carefully
               crafted to delight your senses and satisfy your cravings.
-            </p>
+            </motion.p>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          <div className=" bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6">
+          {/* Animation for the first section */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className=" bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6"
+          >
             <h2 className="text-3xl font-semibold text-red-800 mb-4">
               What We Offer
             </h2>
@@ -54,8 +78,15 @@ const About = () => {
                 leaves with a smile.
               </li>
             </ul>
-          </div>
-          <div className=" bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6">
+          </motion.div>
+
+          {/* Animation for the second section */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className=" bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6"
+          >
             <h2 className="text-3xl font-semibold text-red-800 mb-4">
               Our Values
             </h2>
@@ -85,8 +116,15 @@ const About = () => {
                 with Ruby Pastries is nothing short of amazing.
               </li>
             </ul>
-          </div>
-          <div className=" bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6">
+          </motion.div>
+
+          {/* Animation for the third section */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className=" bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6"
+          >
             <h2 className="text-3xl font-semibold text-red-800 mb-4">
               Join Us
             </h2>{" "}
@@ -98,8 +136,15 @@ const About = () => {
               you for choosing Ruby Pastries. We look forward to serving you and
               becoming a part of your cherished moments.
             </p>
-          </div>
-          <div className=" bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6">
+          </motion.div>
+
+          {/* Animation for the fourth section */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className=" bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6"
+          >
             <h2 className="text-3xl font-semibold text-red-800 mb-4">
               Contact Us
             </h2>
@@ -114,7 +159,7 @@ const About = () => {
                 Email: rubyIntegrated@gmail.com
               </a>
             </div>
-            <div className="mt-4">
+            <div className="mt-1">
               <a
                 href="tel:+2348177772021"
                 className="z-60 text-primary font-semibold inline-block hover:underline"
@@ -122,20 +167,49 @@ const About = () => {
                 Phone: +234 817 777 2021
               </a>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="z-20  bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6">
-            <h2 className="text-3xl font-semibold text-red-800 mb-4">
-              Location
-            </h2>
-            <p className="text-gray-800">
-              <span className="font-semibold">Nasarawa</span> - Ruby Bakery, No.
-              10, Alloyd Monek International School Avenue, Karu Local
-              Government, Nasarawa State. <br />
-              <span className="font-semibold">Abuja</span> - PPMC Corporative,
-              Store C Ground Floor, NNPC Towers, Abuja.
+        {/* Animation for the fifth section */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="z-20  bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6"
+        >
+          <h2 className="text-3xl font-semibold text-red-800 mb-4">Location</h2>
+          <p className="text-gray-800">
+            <span className="font-semibold">Nasarawa</span> - Ruby Bakery, No.
+            10, Alloyd Monek International School Avenue, Karu Local Government,
+            Nasarawa State. <br />
+            <span className="font-semibold">Abuja</span> - PPMC Corporative,
+            Store C Ground Floor, NNPC Towers, Abuja.
+          </p>
+        </motion.div>
+
+        {/* Animation for the sixth section */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className=" bg-red-100 shadow-sm bg-clip-padding backdrop-filter backdrop-blur-md rounded-lg p-6"
+        >
+          <h2 className="text-3xl font-semibold text-red-800 mb-4">
+            Account Details
+          </h2>
+          <p>
+            <span className="font-bold text-gray-800">Account Name:</span>
+            <br /> Ruby Integrated Global Services Limited
+          </p>
+          <div className="mt-1">
+            <p>
+              <span className="font-bold">Account Numbers:</span>
+              <br />
+              0013026916 (Jaiz bank)
+              <br />
+              0037940253 (Stanbic IBTC)
             </p>
           </div>
+        </motion.div>
         </div>
       </div>
       {/* Background Logo (Replace with your image path) */}

@@ -11,7 +11,7 @@ const Register = () => {
     // phone: "",
     password: "",
   });
-  console.log(formData);
+  // console.log(formData);
   function handleChange(event) {
     setFormData((prevFormData) => {
       return {
@@ -38,7 +38,7 @@ const Register = () => {
       alert(
         `Registration Sucessful! Check ${formData.email} for verification link`
       );
-      console.log(data)
+      // console.log(data)
       // navigate("/login");
     } catch (error) {
       alert(error);

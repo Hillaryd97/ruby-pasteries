@@ -10,7 +10,7 @@ const Login = ({ setToken }) => {
     // phone: "",
     password: "",
   });
-  console.log(formData);
+  // console.log(formData);
   function handleChange(event) {
     setFormData((prevFormData) => {
       return {
@@ -33,7 +33,7 @@ const Login = ({ setToken }) => {
       //     `Login Sucessful! Check ${formData.email} for verification link`
       //   );
       setToken(data);
-      console.log(data);
+      // console.log(data);
 
       navigate("/account");
     } catch (error) {

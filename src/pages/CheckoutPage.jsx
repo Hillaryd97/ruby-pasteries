@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useStateContext } from "../../context/StateContext";
 import { supabase } from "../createClient";
-
+import { motion } from "framer-motion";
 import Nav from "../components/Nav";
 
 const CheckoutPage = () => {
@@ -19,8 +19,12 @@ const CheckoutPage = () => {
     postCartDetailsToSupabase,
     handlePhoneChange,
     handleAddressChange, // Add setAddress function from context
+    handleEmailChange,
+    handleNameChange,
     phone, // Add phone from context
     address, // Add address from context
+    name,
+    email,
     updatedTotalPrice,
     calculateDeliveryFee,
     deliveryFee,
@@ -35,8 +39,8 @@ const CheckoutPage = () => {
     clearCart(); // Clear the cart
 
     // setTimeout(() => {
-      navigate("/store");
-    // }, 2000); 
+    navigate("/store");
+    // }, 2000);
   };
 
   const token = JSON.parse(sessionStorage.getItem("token"));
@@ -80,8 +84,8 @@ const CheckoutPage = () => {
 
   // State for user details (you can replace these with your user data)
   const [formData, setFormData] = useState({
-    fullname: `${token.user.user_metadata.fullname}`,
-    email: `${token.user.email}`,
+    fullname: "",
+    email: "",
     phone: "",
     address: "",
   });
@@ -128,13 +132,12 @@ const CheckoutPage = () => {
                 Name:
               </label>
               <input
+                required
                 type="text"
                 id="name"
                 className="w-full border rounded py-1 px-2"
-                value={formData.fullname}
-                onChange={(e) =>
-                  setFormData({ ...formData, fullname: e.target.value })
-                }
+                value={name}
+                onChange={handleNameChange} // Call the function to update the phone in the context
               />
             </div>
             <div className="mb-4">
@@ -142,13 +145,12 @@ const CheckoutPage = () => {
                 Email:
               </label>
               <input
+                required
                 type="text"
                 id="email"
                 className="w-full border rounded py-1 px-2"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
+                value={email}
+                onChange={handleEmailChange} // Call the function to update the phone in the context
               />
             </div>
             <div className="mb-4">
@@ -183,7 +185,7 @@ const CheckoutPage = () => {
             </div>
             <div className="mb-4">
               <label htmlFor="deliveryType" className="text-lg">
-                Delivery Type:
+                Delivery Location:
               </label>
               <select
                 id="deliveryType"
@@ -245,17 +247,32 @@ const CheckoutPage = () => {
       </div>
       {/* Order Confirmation Pop-up */}
       {showOrderConfirmation && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <motion.div
+      initial={{ opacity: 0, y: -20 }} // Initial state (hidden)
+      animate={{ opacity: 1, y: 0 }} // Animation state (visible)
+      transition={{ duration: 0.5 }} // Animation duration
+      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+    >
           <div className="bg-white p-6 flex flex-col justify-center items-center rounded-lg space-y-4 shadow-md md:w-96 text-center">
             <h2 className="text-primary text-2xl font-bold">Thank You</h2>
-            <p className="text-lg font-semibold">Your order has been received!</p>
+            <p className="text-lg font-semibold">
+              Your order has been received!
+            </p>
             {/* Display the total price with delivery */}
             <p className="text-lg ">
-              Your Bill: 
-              <span className="text-lg font-bold"> ₦{totalWithDelivery.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span>
+              Your Bill:
+              <span className="text-lg font-bold">
+                {" "}
+                ₦
+                {totalWithDelivery
+                  .toFixed(2)
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </span>
             </p>
             <p className="">
               Please make payment to any of the following account numbers:
+              <br />
+              <span className="text-red-500 italic font-bold text-sm">(Payment validates order)</span>
             </p>
             <div className="text-left">
               <p>
@@ -282,9 +299,12 @@ const CheckoutPage = () => {
             >
               Back To Store
             </Link> */}
-            <p className="text-sm italic"> Note: Account details can be found in the About Us section incase this window is unavailable</p>
+            <p className="text-sm italic">
+              {" "}
+              Note: Account details can also be found in the About Us page.
+            </p>
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );

@@ -143,23 +143,23 @@ const Cart = () => {
               </div>
               <div>
                 <div className="flex justify-center items-center pt-6">
-                  {isTokenNotSet ? (
-                    <Link to={"/account"} className="text-red-600">
+                  {/* {isTokenNotSet ? ( */}
+                  {/* <Link to={"/account"} className="text-red-600">
                       {" "}
                       Please log in to checkout.{" "}
                       <span className="underline font-bold capitalize">
                         Login Here
                       </span>
-                    </Link>
-                  ) : (
-                    <Link
-                      to="/checkout"
-                      className="hover:bg-opacity-80 duration-300 text-center rounded-lg bg-primary text-white py-1 w-full sm:w-5/6"
-                      onClick=""
-                    >
-                      CHECKOUT
-                    </Link>
-                  )}
+                    </Link> */}
+                  {/* // ) : ( */}
+                  <Link
+                    to="/checkout"
+                    className="hover:bg-opacity-80 duration-300 text-center rounded-lg bg-primary text-white py-1 w-full sm:w-5/6"
+                    onClick=""
+                  >
+                    CHECKOUT
+                  </Link>
+                  {/* // )} */}
                 </div>
               </div>
             </div>

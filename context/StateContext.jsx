@@ -12,7 +12,9 @@ export const StateContext = ({ children }) => {
   const [qty, setQty] = useState(1);
   const token = JSON.parse(sessionStorage.getItem("token"));
   const [phone, setPhone] = useState(""); // Add phone state
+  const [name, setName] = useState(""); // Add name state
   const [address, setAddress] = useState(""); // Add address state
+  const [email, setEmail] = useState(""); // Add email state
   const [deliveryLocation, setDeliveryLocation] = useState("Abuja"); // Set your default location here
 
   let foundProduct;
@@ -28,7 +30,7 @@ export const StateContext = ({ children }) => {
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [paymentType, setPaymentType] = useState("Bank Transfer"); // New state for payment type
-  const [deliveryType, setDeliveryType] = useState("Home Delivery");
+  const [deliveryType, setDeliveryType] = useState("Pickup (Free)");
   const [updatedTotalPrice, setupdatedTotalPrice] = useState(0);
   const deliveryFees = {
     "ABACHA BARRACKS": 2500,
@@ -87,6 +89,18 @@ export const StateContext = ({ children }) => {
     const phoneValue = e.target.value;
     // setFormData({ ...formData, phone: phoneValue });
     setPhone(phoneValue); // Update the phone in the context
+  };
+
+  const handleNameChange = (e) => {
+    const nameValue = e.target.value;
+    // setFormData({ ...formData, phone: phoneValue });
+    setName(nameValue); // Update the phone in the context
+  };
+
+  const handleEmailChange = (e) => {
+    const emailValue = e.target.value;
+    // setFormData({ ...formData, phone: phoneValue });
+    setEmail(emailValue); // Update the phone in the context
   };
 
   const handleAddressChange = (e) => {
@@ -226,8 +240,7 @@ export const StateContext = ({ children }) => {
       const { data: existingRows, error: fetchError } = await supabase
         .from("cartDetails")
         .select("created_at")
-        .eq("email", token.user.email);
-
+        .eq("email", email);
       if (fetchError) {
         throw fetchError;
       }
@@ -248,8 +261,8 @@ export const StateContext = ({ children }) => {
         // No duplicate, proceed with insertion
         const { data, error } = await supabase.from("cartDetails").upsert([
           {
-            customer_name: token.user.user_metadata.fullname,
-            email: token.user.email,
+            customer_name: name,
+            email: email,
             product_name: productNamesString, // Concatenate product names
             quantity: totalQuantity,
             total_price: totalWithDelivery, // Update the total price with delivery fee
@@ -267,7 +280,6 @@ export const StateContext = ({ children }) => {
 
         // Data has been successfully inserted or updated in Supabase
         console.log("Cart details posted to Supabase:", data);
-        console.log(totalWithDelivery);
       } else {
         // A row with a similar created_at already exists, handle accordingly
         alert("A similar order already exists!");
@@ -413,9 +425,13 @@ export const StateContext = ({ children }) => {
         setDelivery,
         postCartDetailsToSupabase,
         handleAddressChange,
+        handleEmailChange,
+        handleNameChange,
         handlePhoneChange,
         phone, // Provide phone to the context
         address, // Provide address to the context
+        name,
+        email,
         updatedTotalPrice,
         calculateDeliveryFee,
         deliveryFee,
