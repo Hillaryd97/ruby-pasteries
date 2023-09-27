@@ -113,7 +113,7 @@ const NavAll = ({ onSearch, handleSearch }) => {
             </button>
           </form> */}
 
-          <div className="flex space-x-2 items-center justify-center">
+          <div className="flex lg:hidden space-x-2 items-center justify-center">
             <div
               className="flex lg:hidden text-primary cursor-pointer"
               onClick={toggleCart}

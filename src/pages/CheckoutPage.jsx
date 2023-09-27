@@ -272,7 +272,7 @@ const CheckoutPage = () => {
             <p className="">
               Please make payment to any of the following account numbers:
               <br />
-              <span className="text-red-500 italic font-bold text-sm">(Payment validates order)</span>
+              <span className="text-red-500 italic font-bold text-sm">(Payment confirmation validates order)</span>
             </p>
             <div className="text-left">
               <p>
