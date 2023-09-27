@@ -95,7 +95,7 @@ const Dashboard = () => {
               Admin Dashboard
             </h1>
             <p className="mb-8 text-lg">
-              Welcome Back! What are you doing today?
+              Welcome! What are you doing today?
             </p>
           </div>
           <a
