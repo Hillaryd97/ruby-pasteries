@@ -187,7 +187,7 @@ const About = () => {
         </motion.div>
 
         {/* Animation for the sixth section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
@@ -209,7 +209,7 @@ const About = () => {
               0037940253 (Stanbic IBTC)
             </p>
           </div>
-        </motion.div>
+        </motion.div> */}
         </div>
       </div>
       {/* Background Logo (Replace with your image path) */}

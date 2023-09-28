@@ -299,10 +299,10 @@ const CheckoutPage = () => {
             >
               Back To Store
             </Link> */}
-            <p className="text-sm italic">
+            {/* <p className="text-sm italic">
               {" "}
               Note: Account details can also be found in the About Us page.
-            </p>
+            </p> */}
           </div>
         </motion.div>
       )}
