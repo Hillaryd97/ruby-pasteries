@@ -82,9 +82,11 @@ const CheckoutPage = () => {
       return; // Don't proceed with the submission
     }
 
+    // Proceed with the submission
     await postCartDetailsToSupabase();
     setShowOrderConfirmation(true);
   };
+
   // State for user details (you can replace these with your user data)
   const [formData, setFormData] = useState({
     fullname: "",

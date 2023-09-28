@@ -221,7 +221,11 @@ export const StateContext = ({ children }) => {
 
   // // / Calculate the total price including delivery fee
   // const totalWithDelivery = totalPrice + deliveryFee;
-
+  function generateRandomOrderId() {
+    // Generate a random number between 100000 and 999999
+    const orderId = Math.floor(Math.random() * 900000) + 100000;
+    return orderId.toString(); // Convert the number to a string
+  }
   const productNamesString = productNamesWithQuantity.join(", ");
   const postCartDetailsToSupabase = async () => {
     try {
@@ -259,8 +263,10 @@ export const StateContext = ({ children }) => {
 
       if (!isDuplicate) {
         // No duplicate, proceed with insertion
+        const randomOrderId = generateRandomOrderId();
         const { data, error } = await supabase.from("cartDetails").upsert([
           {
+            order_id: randomOrderId,
             customer_name: name,
             email: email,
             product_name: productNamesString, // Concatenate product names
