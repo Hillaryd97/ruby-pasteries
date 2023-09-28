@@ -69,6 +69,12 @@ const CheckoutPage = () => {
   // const totalWithDelivery = totalPrice + deliveryFee;
 
   const handlePlaceOrder = async () => {
+    // Check if required fields are empty
+    if (!name || !email || !phone || !address) {
+      alert("Please fill in all required fields (marked with *).");
+      return; // Don't proceed with the submission
+    }
+
     if (cartItems.length === 0) {
       alert(
         "Your cart is empty. Please add items to your cart before checking out."
@@ -78,10 +84,7 @@ const CheckoutPage = () => {
 
     await postCartDetailsToSupabase();
     setShowOrderConfirmation(true);
-
-    // Remove the timeout for redirection
   };
-
   // State for user details (you can replace these with your user data)
   const [formData, setFormData] = useState({
     fullname: "",
@@ -129,7 +132,7 @@ const CheckoutPage = () => {
             <h3 className="text-xl font-semibold mb-4">Delivery Details</h3>
             <div className="mb-4">
               <label htmlFor="name" className="text-lg">
-                Name:
+                Name: <span className="text-red-500">*</span>
               </label>
               <input
                 required
@@ -142,7 +145,7 @@ const CheckoutPage = () => {
             </div>
             <div className="mb-4">
               <label htmlFor="email" className="text-lg">
-                Email:
+                Email: <span className="text-red-500">*</span>
               </label>
               <input
                 required
@@ -247,12 +250,12 @@ const CheckoutPage = () => {
       </div>
       {/* Order Confirmation Pop-up */}
       {showOrderConfirmation && (
-      <motion.div
-      initial={{ opacity: 0, y: -20 }} // Initial state (hidden)
-      animate={{ opacity: 1, y: 0 }} // Animation state (visible)
-      transition={{ duration: 0.5 }} // Animation duration
-      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
-    >
+        <motion.div
+          initial={{ opacity: 0, y: -20 }} // Initial state (hidden)
+          animate={{ opacity: 1, y: 0 }} // Animation state (visible)
+          transition={{ duration: 0.5 }} // Animation duration
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+        >
           <div className="bg-white p-6 flex flex-col justify-center items-center rounded-lg space-y-4 shadow-md md:w-96 text-center">
             <h2 className="text-primary text-2xl font-bold">Thank You</h2>
             <p className="text-lg font-semibold">
@@ -272,7 +275,9 @@ const CheckoutPage = () => {
             <p className="">
               Please make payment to any of the following account numbers:
               <br />
-              <span className="text-red-500 italic font-bold text-sm">(Payment confirmation validates order)</span>
+              <span className="text-red-500 italic font-bold text-sm">
+                (Payment confirmation validates order)
+              </span>
             </p>
             <div className="text-left">
               <p>
