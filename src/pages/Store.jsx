@@ -150,7 +150,7 @@ const Store = () => {
           </motion.div>
         )}
         {searchResults.length > 0 && (
-          <div>
+          <div className="justify-center items-center">
             <h2 className="lg:text-3xl text-2xl text-center text-primary py-2 ">
               Search Results
             </h2>
@@ -188,7 +188,7 @@ const Store = () => {
               </h3>
             </div>
             <motion.div
-              className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mt-10 lg:mx-20"
+              className="grid lg:grid-cols-4 md:grid-cols-3 mx-3 grid-cols-2 mt-10 lg:mx-20"
               initial="hidden"
               animate="visible"
               variants={fadeInVariant}

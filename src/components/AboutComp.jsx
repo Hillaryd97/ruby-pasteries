@@ -5,7 +5,7 @@ const AboutComp = () => {
     <div className="bg-red-800 text-white mt-10 py-5">
       <div className="container mx-auto flex flex-col justify-center items-center lg:px-32 space-y-3 px-3 text-center">
         <h4 className="font-playfair-display lg:text-3xl text-2xl font-bold">Order Pastries Today </h4>
-        <p>
+        <p className="text-sm lg:text-base">
           At Ruby Pastries, we are on a mission to awaken your taste buds and
           elevate your culinary journey. Our delectable finger foods,
           mouthwatering bread, and tantalizing snacks are designed to delight

@@ -54,11 +54,11 @@ const Offers = () => {
         <h3 className="font-playfair-display lg:text-3xl text-2xl font-bold text-primary pb-1 text-center">
           Featured Pastries
         </h3>
-        <p className="text-gray-700 mb-2 capitalize">
+        <p className="text-gray-700 mb-2 capitalize text-sm lg:text-base text-center">
           Handcrafted creations, each pastry a work of art.
         </p>
       </div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 mt-10 lg:mx-20">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 mt-10 lg:mx-20">
         {displayedProducts.map((product) => (
           <Link to={`/product/${product.slug.current}`} key={product._id}>
           {/* <a

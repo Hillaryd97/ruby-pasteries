@@ -1,7 +1,7 @@
 import { useStateContext } from "../../context/StateContext";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   AiOutlineMenu,
   AiOutlineSearch,
@@ -14,6 +14,7 @@ const Nav = ({ onSearch, handleSearch }) => {
     useStateContext();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // Track the search query
+  const navRef = useRef(null);
   // const [isCartOpen, setIsCartOpen] = useState(false);
   // const toggleCart = () => {
   //   setIsCartOpen(!isCartOpen);
@@ -26,6 +27,21 @@ const Nav = ({ onSearch, handleSearch }) => {
   // const handleSearchChange = (e) => {
   //   setSearchQuery(e.target.value);
   // };
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setIsNavOpen(false);
+      }
+    };
+
+    // Add event listener for clicks outside of the navigation menu
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      // Remove the event listener when the component unmounts
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
 
   const handleSearchChange = (e) => {
     const inputValue = e.target.value;
@@ -41,8 +57,8 @@ const Nav = ({ onSearch, handleSearch }) => {
   };
 
   return (
-    <div>
-      <div className="">
+    <div className="mb-16">
+      <div className="fixed top-0 left-0 right-0 bg-background z-50">
         <div className="flex justify-between items-center py-3 pt-4">
           <div className="flex lg:items-center flex-col lg:-space-y-2">
             <img src={logo} alt="" className=" w-20 -ml-2" />
@@ -128,6 +144,7 @@ const Nav = ({ onSearch, handleSearch }) => {
         </div>
       </div>
       <div
+        ref={navRef}
         className={`lg:hidden fixed top-0 right-0 h-full w-64 bg-secondary overflow-y-auto transform ${
           isNavOpen ? "translate-x-0" : "translate-x-full"
         } z-20 transition-transform ease-in-out duration-300`}
