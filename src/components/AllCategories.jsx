@@ -11,7 +11,7 @@ const AllCategories = () => {
         `*[_type == "categories"]{
           name, 
           _id,
-          "productCount": count(*[_type == "product" && references(^._id)])
+          "productCount": count(*[_type == "product" && references(^._id) && available == true])
         }`
       )
       .then((data) => {

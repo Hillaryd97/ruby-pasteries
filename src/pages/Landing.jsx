@@ -11,6 +11,7 @@ import Footer from "../components/Footer";
 import Cart from "../components/Cart";
 import { useState } from "react";
 import { ScrollRestoration } from "react-router-dom";
+import { client } from "../../lib/client";
 
 const Landing = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);

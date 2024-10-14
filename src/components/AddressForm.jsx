@@ -18,7 +18,7 @@ const AddressForm = ({ onSubmit, onCancel, token,  setIsModalOpen }) => {
     city: "",
     state: "",
   });
-  console.log(formData);
+  // console.log(formData);
 
   const handleChange = (event) => {
     setFormData((prevFormData) => {
@@ -41,7 +41,7 @@ const AddressForm = ({ onSubmit, onCancel, token,  setIsModalOpen }) => {
             state: formData.state,
           })
           .eq("email", token.user.email);
-          console.log(`${token.user.email}`)
+          // console.log(`${token.user.email}`)
         if (error) {
           throw error;
         }

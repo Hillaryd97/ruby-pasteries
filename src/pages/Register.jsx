@@ -35,11 +35,11 @@ const Register = () => {
           },
         },
       });
-      alert(
-        `Registration Sucessful! Check ${formData.email} for verification link`
-      );
+      // alert(
+      //   `Registration Sucessful! Check ${formData.email} for verification link`
+      // );
       // console.log(data)
-      // navigate("/login");
+      navigate("/account");
     } catch (error) {
       alert(error);
     }

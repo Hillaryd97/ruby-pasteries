@@ -28,6 +28,7 @@ const About = () => {
             >
               Welcome to Ruby Pastries
             </motion.h2>
+            
             {/* Add animations to the paragraphs */}
             <motion.p
               initial={{ opacity: 0 }}
@@ -228,3 +229,7 @@ const About = () => {
 };
 
 export default About;
+
+
+
+// MtwacVEnPC5mauB7

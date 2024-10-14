@@ -12,7 +12,7 @@ const Offers = () => {
   useEffect(() => {
     client
       .fetch(
-        ` *[_type == "product"]{
+        `*[_type == "product" && available == true]{
           ...,
           'category': category->,
         }`

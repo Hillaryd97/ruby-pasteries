@@ -28,7 +28,7 @@ const Store = () => {
     const fetchProducts = async () => {
       try {
         const productData = await client.fetch(
-          ` *[_type == "product"]{
+          `*[_type == "product" && available == true]{
             ...,
             'category': category->,
           }`

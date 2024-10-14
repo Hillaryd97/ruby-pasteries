@@ -13,10 +13,10 @@ const ProductLanding = () => {
   useEffect(() => {
     client
       .fetch(
-        ` *[_type == "product"]{
-          ...,
-          'category': category->,
-        }`
+        `*[_type == "product" && available == true]{
+            ...,
+            'category': category->,
+          }`
       )
       .then((data) => setProducts(data))
       .catch(console.error);
