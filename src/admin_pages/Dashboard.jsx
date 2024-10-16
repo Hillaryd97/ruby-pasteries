@@ -142,8 +142,8 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <div className="container mx-auto py-8 bg-white p-4 rounded-lg shadow-md mb-8">
+    <div className="bg-white min-h-screen">
+      <div className="container mx-auto py-8 p-4 rounded-lg mb-8">
         <div className="flex justify-between items-center mb-6">
           <div>
             <h1 className="text-3xl font-semibold text-primary mb-1">
@@ -191,7 +191,7 @@ const Dashboard = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead>
               <tr>
-                {["Order Date", "Order ID", "Customer Name", "Phone Number", "Email", "Address", "Payment Type", "Delivery Type", "Products", "Total Price", "Order Status", "Payment Status", "Actions"].map((header) => (
+                {["Order Date", "Order ID", "Customer Name", "Phone Number", "Email", "Address", "Payment Type", "Delivery Location", "Products", "Total Price", "Order Status", "Payment Status", "Actions"].map((header) => (
                   <th
                     key={header}
                     className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
