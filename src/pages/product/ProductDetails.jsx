@@ -192,7 +192,11 @@ function ProductDetails() {
                 <PastryCard
                   pastry_name={product.name}
                   category={product.category.name}
-                  image={urlFor(product.image && product.image[0])}
+                  image={
+                    product.image
+                      ? urlFor(product.image && product.image[0])
+                      : "https://placehold.co/600x400"
+                  }
                   price={product.price}
                 />
               </Link>
