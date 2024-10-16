@@ -33,11 +33,11 @@ const AllCategories = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4">
           {categories?.map((category) => (
             <div
-              key={category._id}
+              key={category?._id}
               className="space-x-2  hover:text-primary font-semibold duration-300 rounded-full flex lg:justify-center py-1.5"
             >
               <p>
-                {category.name} <span>({category.productCount})</span>
+                {category?.name} <span>({category?.productCount})</span>
               </p>
             </div>
           ))}

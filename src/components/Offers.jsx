@@ -45,7 +45,7 @@ const Offers = () => {
       setDisplayedProducts(initialDisplay);
     }
 
-    return () => clearInterval(intervalId); 
+    return () => clearInterval(intervalId);
   }, [products]);
 
   return (
@@ -60,19 +60,25 @@ const Offers = () => {
       </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 mt-10 lg:mx-20">
         {displayedProducts.map((product) => (
-          <Link to={`/product/${product.slug.current}`} key={product._id}>
-          {/* <a
-            href={`/product/${product.slug.current}`}
+          <Link to={`/product/${product?.slug.current}`} key={product?._id}>
+            {/* <a
+            href={`/product/${product?.slug.current}`}
             // Optionally add any other attributes or styles you need
           > */}
-            <PastryCard
-              pastry_name={product.name}
-              category={product.category.name}
-              image={urlFor(product.image && product.image[0])}
-              price={product.price}
-            />
-          {/* </a> */}
-        </Link>
+            <Link to={`/product/${product?.slug?.current}`} key={product?._id}>
+              <PastryCard
+                pastry_name={product?.name || "Unknown Pastry"}
+                category={product?.category?.name || "Miscellaneous"}
+                image={
+                  product?.image
+                    ? urlFor(product?.image[0])
+                    : `https://placehold.co/600x400?text=${product?.name}`
+                }
+                price={product?.price != null ? product?.price : "N/A"} // Ensure price fallback
+              />
+            </Link>
+            {/* </a> */}
+          </Link>
         ))}
       </div>
     </div>

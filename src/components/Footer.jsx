@@ -76,7 +76,7 @@ const Footer = () => {
       <div className="bg-background">
         <div className="container px-4 mx-auto flex flex-col lg:flex-row justify-center hover:text-primary duration-300 py-2 text-text">
           <a href="https://simi-hillary.vercel.app/">
-            Copyright &copy; 2023 Ruby Pastries | Powered by Ruby Pastries
+            Copyright &copy; 2024 Ruby Pastries | Powered by Ruby Pastries
           </a>
         </div>
       </div>

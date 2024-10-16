@@ -127,20 +127,20 @@ function ProductDetails() {
             {displayedProducts.map((product) => (
               <div
                 className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8"
-                key={product._id}
+                key={product?._id}
               >
                 <div className="flex flex-row justify-center items-center">
                   <img
-                    src={urlFor(product.image && product.image[0])}
-                    alt={product.name}
+                    src={urlFor(product?.image && product?.image[0])}
+                    alt={product?.name}
                     className="rounded-lg shadow-lg h-[20rem] md:w-3/4 mx-auto md:mx-0"
                   />
                 </div>
                 <div>
-                  <h1 className="text-3xl font-semibold">{product.name}</h1>
+                  <h1 className="text-3xl font-semibold">{product?.name}</h1>
 
                   <p className="text-primary text-2xl font-semibold mt-2">
-                    ₦{product.price.toFixed(2)}
+                    ₦{product?.price.toFixed(2)}
                   </p>
                   <div className="flex flex-row items-center space-x-1 mt-3">
                     <div className="flex flex-row border-2 border-black space-x-3 items-center bg-white w-fit px-2">
@@ -169,11 +169,11 @@ function ProductDetails() {
 
                   <h4 className="text-lg font-medium mt-4">Description:</h4>
                   <p className="text-gray-800 mt-1">
-                    {product.details ||
-                      `Introducing the ${product.name}. This carefully crafted delight is a perfect blend of flavors and textures that will tantalize your taste buds. Whether you're a seasoned foodie or simply craving a delicious snack, our ${product.name} is here to satisfy.`}
+                    {product?.details ||
+                      `Introducing the ${product?.name}. This carefully crafted delight is a perfect blend of flavors and textures that will tantalize your taste buds. Whether you're a seasoned foodie or simply craving a delicious snack, our ${product?.name} is here to satisfy.`}
                   </p>
                   <p className="text-gray-600 mt-2">
-                    Category: {product.category?.name || "Uncategorized"}
+                    Category: {product?.category?.name || "Uncategorized"}
                   </p>
                 </div>
               </div>
@@ -188,16 +188,16 @@ function ProductDetails() {
         <div className="">
           <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 justify-evenly mx-2 md:mx-10 py-10">
             {displayedLikableProducts.map((product) => (
-              <Link to={`/product/${product.slug.current}`} key={product._id}>
+              <Link to={`/product/${product?.slug.current}`} key={product?._id}>
                 <PastryCard
-                  pastry_name={product.name}
-                  category={product.category.name}
+                  pastry_name={product?.name}
+                  category={product?.category?.name}
                   image={
-                    product.image
-                      ? urlFor(product.image && product.image[0])
+                    product?.image
+                      ? urlFor(product?.image && product?.image[0])
                       : "https://placehold.co/600x400"
                   }
-                  price={product.price}
+                  price={product?.price}
                 />
               </Link>
             ))}

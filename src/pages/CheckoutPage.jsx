@@ -223,18 +223,18 @@ const CheckoutPage = () => {
               </select>
             </div>
             {paymentType === "Bank Transfer" && (
-              <div className="mb-4">
+              <div className="mb-2">
                 <h3 className="text-lg font-semibold">Bank Account Details:</h3>
                 <p>
                   <span className="font-bold">Name:</span> Ruby Integrated
                   Global Service Ltd
                 </p>
                 <p>
-                  <span className="font-bold">Account Numbers:</span>
+                  <span className="font-bold">Account Number:</span>
                   <br />
                   0013207049 (Jaiz bank)
                   <br />
-                  0037940253 (Stanbic IBTC)
+                  {/* 0037940253 (Stanbic IBTC) */}
                 </p>
               </div>
             )}

@@ -41,7 +41,7 @@ const Store = () => {
 
   const categorizeProducts = (products) => {
     const categorized = products.reduce((acc, product) => {
-      const categoryName = product.category.name;
+      const categoryName = product?.category?.name || "Uncategorized";
       if (!acc[categoryName]) {
         acc[categoryName] = [];
       }
@@ -57,8 +57,8 @@ const Store = () => {
       setSearchResults([]);
     } else {
       const results = products.filter((product) => {
-        const productName = product.name.toLowerCase();
-        const categoryName = product.category.name.toLowerCase();
+        const productName = product?.name.toLowerCase();
+        const categoryName = (product?.category?.name || "Uncategorized").toLowerCase();
         const search = query.toLowerCase();
         return productName.includes(search) || categoryName.includes(search);
       });
@@ -105,16 +105,16 @@ const Store = () => {
       variants={fadeInVariant}
     >
       {products.map((product) => (
-        <Link to={`/product/${product.slug.current}`} key={product._id}>
+        <Link to={`/product/${product?.slug?.current}`} key={product?._id}>
           <PastryCard
-            pastry_name={product.name}
-            category={product.category.name}
+            pastry_name={product?.name || "Unknown Pastry"}
+            category={product?.category?.name || "Uncategorized"}
             image={
-              product.image
-                ? urlFor(product.image[0])
-                : `https://placehold.co/600x400?text=${product.name}`
+              product?.image
+                ? urlFor(product?.image[0])
+                : `https://placehold.co/600x400?text=${product?.name}`
             }
-            price={product.price}
+            price={product?.price != null ? product?.price : "N/A"}
           />
         </Link>
       ))}
@@ -178,7 +178,7 @@ const Store = () => {
 
       <div className="bg-background mt-8">
         <div className="container mx-auto flex flex-col md:flex-row justify-center md:justify-between py-2 text-text">
-          <p>Copyright &copy; 2023 Ruby Pastries</p>
+          <p>Copyright &copy; 2024 Ruby Pastries</p>
           <p>Powered by Ruby Pastries</p>
         </div>
       </div>

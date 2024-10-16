@@ -220,7 +220,7 @@ const About = () => {
       ></div>
       <div className="bg-background mx-4">
         <div className="container mx-auto flex flex-col md:flex-row justify-center md:justify-between py-2 text-text">
-          <p className="">Copyright &copy; 2023 Ruby Pastries</p>
+          <p className="">Copyright &copy; 2024 Ruby Pastries</p>
           <p>Powered by Ruby Pastries</p>
         </div>
       </div>
