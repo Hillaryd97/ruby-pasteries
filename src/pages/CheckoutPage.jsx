@@ -200,6 +200,7 @@ const CheckoutPage = () => {
               >
                 {/* <option value="Home Delivery">Home Delivery</option> */}
                 <option value="Pickup">Pickup (Free)</option>
+                <option value="NNPC Towers">NNPC Towers (Free)</option>
                 {Object.keys(deliveryFees).map((location) => (
                   <option key={location} value={location}>
                     {location} - ₦{deliveryFees[location]}
@@ -226,12 +227,12 @@ const CheckoutPage = () => {
                 <h3 className="text-lg font-semibold">Bank Account Details:</h3>
                 <p>
                   <span className="font-bold">Name:</span> Ruby Integrated
-                  Global Services Limited
+                  Global Service Ltd
                 </p>
                 <p>
                   <span className="font-bold">Account Numbers:</span>
                   <br />
-                  0013026916 (Jaiz bank)
+                  0013207049 (Jaiz bank)
                   <br />
                   0037940253 (Stanbic IBTC)
                 </p>
@@ -289,7 +290,7 @@ const CheckoutPage = () => {
               <p>
                 <span className="font-bold">Account Numbers:</span>
                 <br />
-                0013026916 (Jaiz bank)
+                0013207049 (Jaiz bank)
                 <br />
                 0037940253 (Stanbic IBTC)
               </p>

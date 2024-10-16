@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import OrderStatus from "../components/OrderStatus";
 import { FaPlus } from "react-icons/fa";
 const Dashboard = () => {
-  // Replace 'YOUR_SANITY_CMS_URL' with the actual URL of your Sanity CMS
+
   const sanityCmsUrl = "https://rubypastries.sanity.studio/";
   const [orders, setOrders] = useState([]);
   const [editedOrders, setEditedOrders] = useState([]);

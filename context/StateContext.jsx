@@ -277,6 +277,7 @@ export const StateContext = ({ children }) => {
             phone: phone, // Include phone in the data
             address: address, // Include address in the data
             created_at: new Date(), // Replace with the actual created_at value
+            order_completed: "Pending"
           },
         ]);
 

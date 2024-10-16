@@ -205,7 +205,7 @@ const About = () => {
             <p>
               <span className="font-bold">Account Numbers:</span>
               <br />
-              0013026916 (Jaiz bank)
+              0013207049 (Jaiz bank)
               <br />
               0037940253 (Stanbic IBTC)
             </p>
