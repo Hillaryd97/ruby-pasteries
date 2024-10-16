@@ -55,7 +55,7 @@ function ProductDetails() {
     const fetchSimilarProducts = async () => {
       try {
         const similarProductData = await client.fetch(
-          `*[_type == "product"]{
+          `*[_type == "product" && available == true]{
             ...,
             'category': category->,
           }`
