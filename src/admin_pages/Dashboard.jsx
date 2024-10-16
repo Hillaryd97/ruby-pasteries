@@ -191,7 +191,7 @@ const Dashboard = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead>
               <tr>
-                {["Order ID", "Customer Name", "Email", "Products", "Total Price", "Order Status", "Payment Status", "Actions"].map((header) => (
+                {["Order Date", "Order ID", "Customer Name", "Phone Number", "Email", "Address", "Payment Type", "Delivery Type", "Products", "Total Price", "Order Status", "Payment Status", "Actions"].map((header) => (
                   <th
                     key={header}
                     className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
@@ -208,6 +208,9 @@ const Dashboard = () => {
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredOrders.map((order) => (
                 <tr key={order.id}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {new Date(order.created_at).toLocaleDateString()}
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {order.order_id}
                   </td>
@@ -215,7 +218,19 @@ const Dashboard = () => {
                     {order.customer_name}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {order.phone}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {order.email}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {order.address}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {order.payment_type}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {order.delivery_type}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {order.product_name}
