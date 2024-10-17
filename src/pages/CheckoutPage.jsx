@@ -222,22 +222,6 @@ const CheckoutPage = () => {
                 <option value="Pay On Delivery">Pay On Delivery</option>
               </select>
             </div>
-            {paymentType === "Bank Transfer" && (
-              <div className="mb-2">
-                <h3 className="text-lg font-semibold">Bank Account Details:</h3>
-                <p>
-                  <span className="font-bold">Name:</span> Ruby Integrated
-                  Global Service Ltd
-                </p>
-                <p>
-                  <span className="font-bold">Account Number:</span>
-                  <br />
-                  0013207049 (Jaiz bank)
-                  <br />
-                  {/* 0037940253 (Stanbic IBTC) */}
-                </p>
-              </div>
-            )}
             <button
               className="bg-primary text-white py-2 px-4 rounded-lg hover:bg-opacity-80 duration-300"
               onClick={handlePlaceOrder}
@@ -292,7 +276,6 @@ const CheckoutPage = () => {
                 <br />
                 0013207049 (Jaiz bank)
                 <br />
-                0037940253 (Stanbic IBTC)
               </p>
             </div>
             <button
