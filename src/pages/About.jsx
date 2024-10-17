@@ -165,7 +165,7 @@ const About = () => {
                 href="tel:+2348177772021"
                 className="z-60 text-primary font-semibold inline-block hover:underline"
               >
-                Phone: +234 817 777 2021
+                Phone: +234 701 391 4305
               </a>
             </div>
           </motion.div>
