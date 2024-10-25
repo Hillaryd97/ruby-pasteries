@@ -77,18 +77,23 @@ const ProductLanding = () => {
       </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 mt-10 lg:mx-20">
         {displayedProducts.map((product) => (
-         <Link to={`/product/${product?.slug?.current}`} key={product?._id}>
-         <PastryCard
-           pastry_name={product?.name || "Unknown Pastry"}
-           category={product?.category?.name || "Miscellaneous"}
-           image={
-             product?.image
-               ? urlFor(product?.image[0])
-               : `https://placehold.co/600x400?text=${product?.name}`
-           }
-           price={product?.price != null ? product?.price : "N/A"} // Ensure price fallback
-         />
-       </Link>
+          <Link
+            to={
+              product?.slug?.current ? `/product/${product.slug.current}` : "#"
+            }
+            key={product?._id}
+          >
+            <PastryCard
+              pastry_name={product?.name || "Unknown Pastry"}
+              category={product?.category?.name || "Miscellaneous"}
+              image={
+                product?.image
+                  ? urlFor(product?.image[0])
+                  : `https://placehold.co/600x400?text=${product?.name}`
+              }
+              price={product?.price != null ? product?.price : "N/A"} // Ensure price fallback
+            />
+          </Link>
         ))}
       </div>
       <div className="flex justify-center">

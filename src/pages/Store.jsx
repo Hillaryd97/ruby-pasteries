@@ -58,7 +58,9 @@ const Store = () => {
     } else {
       const results = products.filter((product) => {
         const productName = product?.name.toLowerCase();
-        const categoryName = (product?.category?.name || "Uncategorized").toLowerCase();
+        const categoryName = (
+          product?.category?.name || "Uncategorized"
+        ).toLowerCase();
         const search = query.toLowerCase();
         return productName.includes(search) || categoryName.includes(search);
       });
@@ -99,24 +101,30 @@ const Store = () => {
 
   const renderProductGrid = (products) => (
     <motion.div
-      className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4"
+      className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 w-full"
       initial="hidden"
       animate="visible"
       variants={fadeInVariant}
     >
       {products.map((product) => (
-        <Link to={`/product/${product?.slug?.current}`} key={product?._id}>
-          <PastryCard
-            pastry_name={product?.name || "Unknown Pastry"}
-            category={product?.category?.name || "Uncategorized"}
-            image={
-              product?.image
-                ? urlFor(product?.image[0])
-                : `https://placehold.co/600x400?text=${product?.name}`
+        <div className="flex items-center justify-center" key={product?._id}>
+          <Link
+            to={
+              product?.slug?.current ? `/product/${product.slug.current}` : "#"
             }
-            price={product?.price != null ? product?.price : "N/A"}
-          />
-        </Link>
+          >
+            <PastryCard
+              pastry_name={product?.name || "Unknown Pastry"}
+              category={product?.category?.name || "Uncategorized"}
+              image={
+                product?.image
+                  ? urlFor(product?.image[0])
+                  : `https://placehold.co/600x400?text=${product?.name}`
+              }
+              price={product?.price != null ? product?.price : "N/A"}
+            />
+          </Link>
+        </div>
       ))}
     </motion.div>
   );
@@ -125,7 +133,6 @@ const Store = () => {
     <div className="bg-background min-h-screen">
       <div className="container mx-auto">
         <Nav handleSearch={handleSearch} />
-
         {isLoading ? (
           renderLoading()
         ) : (
@@ -141,7 +148,7 @@ const Store = () => {
               animate="visible"
               variants={fadeInVariant}
             >
-              <div className="bg-opacity-60 bg-black h-full flex flex-col justify-center items-center text-center text-white p-4 md:p-8">
+              <div className="bg-opacity-60 bg-black h-full flex flex-col justify-center items-center text-center text-white p-4 md:p-8 w-full">
                 <h1 className="text-lg md:text-2xl font-bold mb-2 md:mb-4">
                   {banner?.title || "Welcome to Our Store"}
                 </h1>
@@ -164,7 +171,10 @@ const Store = () => {
             {!searchQuery &&
               Object.entries(categorizedProducts).map(
                 ([category, products]) => (
-                  <div key={category} className="mt-8">
+                  <div
+                    key={category}
+                    className="mt-8 flex flex-col w-full items-center justify-center"
+                  >
                     <h2 className="text-2xl font-bold text-primary mb-8">
                       {category}
                     </h2>

@@ -8,8 +8,6 @@ import { Link } from "react-router-dom";
 import {
   AiOutlineMinus,
   AiOutlinePlus,
-  AiOutlineStar,
-  AiFillStar,
 } from "react-icons/ai";
 import { useStateContext } from "../../../context/StateContext";
 
@@ -170,7 +168,7 @@ function ProductDetails() {
                   <h4 className="text-lg font-medium mt-4">Description:</h4>
                   <p className="text-gray-800 mt-1">
                     {product?.details ||
-                      `Introducing the ${product?.name}. This carefully crafted delight is a perfect blend of flavors and textures that will tantalize your taste buds. Whether you're a seasoned foodie or simply craving a delicious snack, our ${product?.name} is here to satisfy.`}
+                      `Treat yourself to our delicious ${product?.name}—perfect for any craving!`}
                   </p>
                   <p className="text-gray-600 mt-2">
                     Category: {product?.category?.name || "Uncategorized"}
@@ -186,22 +184,33 @@ function ProductDetails() {
           You may also like
         </h2>
         <div className="">
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 justify-evenly mx-2 md:mx-10 py-10">
-            {displayedLikableProducts.map((product) => (
-              <Link to={`/product/${product?.slug.current}`} key={product?._id}>
-                <PastryCard
-                  pastry_name={product?.name}
-                  category={product?.category?.name}
-                  image={
-                    product?.image
-                      ? urlFor(product?.image && product?.image[0])
-                      : "https://placehold.co/600x400"
+          {displayedLikableProducts ? (
+            <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 justify-evenly mx-2 md:mx-10 py-10">
+              {displayedLikableProducts?.map((product) => (
+                <Link
+                  to={
+                    product?.slug?.current
+                      ? `/product/${product.slug.current}`
+                      : "#"
                   }
-                  price={product?.price}
-                />
-              </Link>
-            ))}
-          </div>
+                  key={product?._id}
+                >
+                  <PastryCard
+                    pastry_name={product?.name}
+                    category={product?.category?.name}
+                    image={
+                      product?.image
+                        ? urlFor(product?.image && product?.image[0])
+                        : "https://placehold.co/600x400"
+                    }
+                    price={product?.price}
+                  />
+                </Link>
+              ))}
+            </div>
+          ) : (
+            renderLoading()
+          )}
         </div>
       </div>
     </div>
